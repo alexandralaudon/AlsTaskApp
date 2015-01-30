@@ -57,3 +57,12 @@
       </div>
     </div>
   </div>
+
+
+
+  <% @quotes.each do |quote| %>
+
+    <%=quote[:text]%>
+    <p class="text-muted"><i><%= quote[:author] %><i/></p>
+
+  <% end %>

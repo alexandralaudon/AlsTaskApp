@@ -3,7 +3,7 @@
   <h1>Frequently Asked Questions</h1>
 </div>
 
-<ul>
+<!-- <ul>
   <li>What is gCamp?</li>
   <li>How do I join gCamp?</li>
   <li>When will gCamp be finished?</li>
@@ -13,10 +13,10 @@
 
 <h3>How do I join gCamp?</h3>
 
-<h3>When will gCamp be finished?</h3>
+<h3>When will gCamp be finished?</h3> -->
 
-<% @cq1.all do |common_question| %>
-<%= common_question.question %>
-<%= common_question.answer %>
-<%= common_question.slug %>
+<% @results.each do |info| %>
+  <p><%= info.question %></p>
+  <p><%= info.answer %></p>
+  <p><%= info.slug %></p>
 <% end %>

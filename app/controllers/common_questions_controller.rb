@@ -1,8 +1,6 @@
 class CommonQuestionsController < ApplicationController
 
-
     def index
-      @cq1 = CommonQuestion.all
+      @results = CommonQuestion.create_array
     end
-    
 end

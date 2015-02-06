@@ -3,10 +3,15 @@
   <h5>Description</h5>
 </div>
 
+<!-- Adding create/update/destroy task note if relevant -->
+<% if notice %>
+  <%= notice %>
+<% end %>
+
   <% @tasks.each do |task| %>
     <p>
       <b><%= task.description %></b>
-      <%= link_to "Show", task_path(task[:id]) %>
+      <%= link_to "Show", task_path(task[:id]) %> |
       <%= link_to "Edit", edit_task_path(task[:id]) %> |
       <%= link_to "Destroy", task_path(task[:id]), method: :delete, data: {confirm: "Are you sure?"} %>
 

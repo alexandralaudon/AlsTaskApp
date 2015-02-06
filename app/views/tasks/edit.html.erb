@@ -1,0 +1,20 @@
+<h1>Editing Task</h1>
+
+
+
+  <%= form_for @task do |f| %>
+
+    <%  %>
+    <%= f.label :description %>
+    <br>
+    <br>
+    <%= f.text_field :description%>
+    <br>
+    <br>
+    <%= f.submit %>
+  <% end %>
+
+  <br>
+
+  <%= link_to "Show", task_path(@task[:id]) %> |
+  <%= link_to "Back", tasks_path %>

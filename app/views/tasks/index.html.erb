@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>Listing Tasks</h1>
+  <h5>Description</h5>
+</div>
+
+  <% @tasks.each do |task| %>
+    <p>
+      <b><%= task.description %></b>
+      <%= link_to "Show", task_path(task[:id]) %>
+      <%= link_to "Edit", edit_task_path(task[:id]) %> |
+      <%= link_to "Destroy", task_path(task[:id]), method: :delete, data: {confirm: "Are you sure?"} %>
+
+    <p>
+  <% end %>
+
+  <p>
+    <%= link_to "New Task", new_task_path %>
+  </p>

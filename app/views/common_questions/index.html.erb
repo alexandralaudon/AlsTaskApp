@@ -3,20 +3,16 @@
   <h1>Frequently Asked Questions</h1>
 </div>
 
-<!-- <ul>
-  <li>What is gCamp?</li>
-  <li>How do I join gCamp?</li>
-  <li>When will gCamp be finished?</li>
+
+<ul>
+  <% @results.each do |info| %>
+    <li><%= info.question %></li>
+  <% end %>
 </ul>
 
-<h3>What is gCamp?</h3>
-
-<h3>How do I join gCamp?</h3>
-
-<h3>When will gCamp be finished?</h3> -->
-
 <% @results.each do |info| %>
-  <p><%= info.question %></p>
-  <p><%= info.answer %></p>
-  <p><%= info.slug %></p>
+
+  <p><h3><%= info.question %></h3></p>
+    <p><%= info.answer %></p>
+    <%= link_to "top", faq_path  %>
 <% end %>

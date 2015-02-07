@@ -10,8 +10,7 @@ class TasksController < ApplicationController
     def create
       @task = Task.new(task_params)
       @task.save
-      redirect_to task_path(@task), notice: "Task was successfully created"
-
+      redirect_to task_path(@task), notice: "Task was successfully created!"
     end
 
     def show
@@ -26,12 +25,12 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
       task_params = params.require(:task).permit(:description)
       @task.update(task_params)
-      redirect_to tasks_path, notice: "Task was successfully updated"
+      redirect_to tasks_path, notice: "Task was successfully updated!"
     end
 
     def destroy
       Task.find(params[:id]).destroy
-      redirect_to tasks_path, notice: "Task was Deleted"
+      redirect_to tasks_path, notice: "Task was successfully deleted!"
     end
 
 

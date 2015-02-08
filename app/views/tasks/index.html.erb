@@ -23,25 +23,21 @@
 
   <% @tasks.each do |task| %>
     <p>
-
-    <table class="table table-stripped">
-      <tbody>
-
-        <a href="<%= task_path(task[:id]) %>">
-          <%= task.description %>
-        </a>
-
-        <button type="button" class="btn btn=info text-right">
-          <%= link_to "Edit", edit_task_path(task[:id]) %>
-        </button>
-
-        <button type="button" class="btn btn-danger text-right">
-          <%= link_to "Destroy", task_path(task[:id]),
-          method: :delete, data: {confirm: "Are you sure?"} %>
-        </button>
-
-      </tbody>
-    </table>
-
+      <div class="row">
+        <div class="col-md-10">
+          <a href="<%= task_path(task[:id]) %>">
+            <%= task.description %>
+          </a>
+        </div>
+        <div class="col-md-2 text-right">
+          <button type="button" class="btn btn=info ">
+            <%= link_to "Edit", edit_task_path(task[:id]) %>
+          </button>
+          <button type="button" class="btn btn-danger ">
+            <%= link_to "Delete", task_path(task[:id]),
+            method: :delete, data: {confirm: "Are you sure?"} %>
+          </button>
+        </div>
+      </div>
     <p>
   <% end %>

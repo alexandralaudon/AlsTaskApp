@@ -4,23 +4,44 @@
   <% end %>
 
 
+
+
   <div class="page-header">
+    <button type="button" class="btn btn-info pull-right">
+      <%= link_to "New Task", new_task_path %>
+    </button>
+
     <h1>Listing Tasks</h1>
-    <h5>Description</h5>
   </div>
+
+  <div class="page-header">
+    <h4>Description</h4>
+  </div>
+
 
 <!-- Adding create/update/destroy task note if relevant -->
 
   <% @tasks.each do |task| %>
     <p>
-      <b><%= task.description %></b>
-      <%= link_to "Show", task_path(task[:id]) %> |
-      <%= link_to "Edit", edit_task_path(task[:id]) %> |
-      <%= link_to "Destroy", task_path(task[:id]), method: :delete, data: {confirm: "Are you sure?"} %>
+
+    <table class="table table-stripped">
+      <tbody>
+
+        <a href="<%= task_path(task[:id]) %>">
+          <%= task.description %>
+        </a>
+
+        <button type="button" class="btn btn=info text-right">
+          <%= link_to "Edit", edit_task_path(task[:id]) %>
+        </button>
+
+        <button type="button" class="btn btn-danger text-right">
+          <%= link_to "Destroy", task_path(task[:id]),
+          method: :delete, data: {confirm: "Are you sure?"} %>
+        </button>
+
+      </tbody>
+    </table>
 
     <p>
   <% end %>
-
-  <p>
-    <%= link_to "New Task", new_task_path %>
-  </p>

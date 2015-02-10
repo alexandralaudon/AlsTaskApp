@@ -7,37 +7,43 @@
 
 
   <div class="page-header">
-    <button type="button" class="btn btn-info pull-right">
-      <%= link_to "New Task", new_task_path %>
-    </button>
-
+    <%= link_to "New Task", new_task_path, class: "btn btn-info pull-right" %>
     <h1>Listing Tasks</h1>
   </div>
 
-  <div class="page-header">
-    <h4>Description</h4>
-  </div>
+  <table class="table">
+    <thread>
+      <tr>
+        <strong>Description</strong>
+      </tr>
+    </thread>
 
 
 <!-- Adding create/update/destroy task note if relevant -->
+    <tbody>
 
-  <% @tasks.each do |task| %>
-    <p>
-      <div class="row">
-        <div class="col-md-10">
-          <a href="<%= task_path(task[:id]) %>">
-            <%= task.description %>
-          </a>
-        </div>
-        <div class="col-md-2 text-right">
-          <button type="button" class="btn btn=info ">
-            <%= link_to "Edit", edit_task_path(task[:id]) %>
-          </button>
-          <button type="button" class="btn btn-danger ">
-            <%= link_to "Delete", task_path(task[:id]),
-            method: :delete, data: {confirm: "Are you sure?"} %>
-          </button>
-        </div>
-      </div>
-    <p>
-  <% end %>
+      <% @tasks.each do |task| %>
+          <tr>
+            <div class="row">
+              <div class="col-md-10">
+                <td>
+                  <a href="<%= task_path(task[:id]) %>"><%= task.description %>
+                  </a>
+                </td>
+              </div>
+
+              <div class="col-md-2">
+                <td class="text-right">
+                  <%= link_to "Edit", edit_task_path(task[:id]), class: "btn btn-info" %>
+
+                  <%= link_to "Delete", task_path(task[:id]),
+                  method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger " %>
+                </td>
+              </div>
+
+            </div>
+          </tr>
+      <% end %>
+    </tbody>
+
+  </table>

@@ -1,7 +1,17 @@
-<h1> Task Show Page </h1>
+<!-- Adding create/update/destroy task note if relevant -->
+<% if notice %>
+<p class="alert alert-success" role="alert"><%= notice %></p>
+<% end %>
 
-<p>Description: <%= @task.description %></p>
-<p>Created At: <%= @task.created_at %></p>
-<p>Updated At: <%= @task.updated_at %></p>
-<%= link_to "Edit", edit_task_path(@task) %> |
-<%= link_to "Back", tasks_path %>
+
+
+<div class="page-header">
+  <%= link_to "Edit Task", edit_task_path, class: "btn btn-info pull-right" %>
+  <h1><%= @task.description %></h1>
+</div>
+
+
+<ol class="breadcrumb">
+  <li><%= link_to "Tasks", tasks_path %></li>
+  <li class="active"><%= @task.description %></li>
+</ol>

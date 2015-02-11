@@ -1,6 +1,6 @@
-
+<!-- Adding create/update/destroy task note if relevant -->
   <% if notice %>
-    <p class="alert-success"><%= notice %></p>
+    <p class="alert alert-success" role="alert"><%= notice %></p>
   <% end %>
 
 
@@ -19,9 +19,7 @@
     </thead>
 
 
-<!-- Adding create/update/destroy task note if relevant -->
     <tbody>
-
       <% @tasks.each do |task| %>
           <tr>
             <div class="row">

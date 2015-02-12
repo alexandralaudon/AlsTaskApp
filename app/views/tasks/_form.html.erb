@@ -9,10 +9,11 @@
     </div>
   </div>
 
-<% if @task.complete %>
+<% if controller.controller_name == 'tasks' && controller.action_name == 'edit' %>
+  <!-- current_page?(controller: 'tasks', action: 'edit') %> -->
   <div class="form-group">
-    <div class="checkbox col-md-offset-2 col-md-10">
-      <label><input type="checkbox"> Complete </label>
+    <div class="col-md-offset-2 col-md-10">
+      <%= f.check_box :complete %> Complete
     </div>
   </div>
 <% end %>

@@ -1,5 +1,5 @@
 
-<% if notice == "Task was successfully updated!" %>
+<% if @task.complete %>
   <div class="page-header">
     <%= link_to "Edit Task", edit_task_path, class: "btn btn-info pull-right" %>
     <h1><s><%= @task.description %></s></h1>

@@ -19,7 +19,11 @@
     <div class="container">
 
     <!-- Adding create/update/destroy task note if relevant -->
-    <% flash[:notice] %>
+
+    <% if notice %>
+      <p class="alert alert-success" role="alert"><%= flash[:notice] %></p>
+    <% end %>
+
 
       <%= yield %>
 

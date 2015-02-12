@@ -1,15 +1,19 @@
 <!-- Adding create/update/destroy task note if relevant -->
 <% if notice %>
-<p class="alert alert-success" role="alert"><%= notice %></p>
+  <p class="alert alert-success" role="alert"><%= notice %></p>
 <% end %>
 
-
-
-<div class="page-header">
-  <%= link_to "Edit Task", edit_task_path, class: "btn btn-info pull-right" %>
-  <h1><%= @task.description %></h1>
-</div>
-
+<% if notice == "Task was successfully updated!" %>
+  <div class="page-header">
+    <%= link_to "Edit Task", edit_task_path, class: "btn btn-info pull-right" %>
+    <h1><s><%= @task.description %></s></h1>
+  </div>
+<% else %>
+  <div class="page-header">
+    <%= link_to "Edit Task", edit_task_path, class: "btn btn-info pull-right" %>
+    <h1><%= @task.description %></h1>
+  </div>
+<% end %>
 
 <ol class="breadcrumb">
   <li><%= link_to "Tasks", tasks_path %></li>

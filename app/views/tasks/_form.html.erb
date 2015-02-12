@@ -1,15 +1,5 @@
 
 
-<div class="page-header">
-  <h1><%= page_header %></h1>
-</div>
-
-<ol class="breadcrumb">
-  <li><%= link_to "Tasks", tasks_path %></li>
-  <li class="active"><%= page_header %></li>
-</ol>
-
-
 <div class="form-horizontal">
   <div class="form-group">
     <%= form_for @task do |f| %>
@@ -17,8 +7,17 @@
     <div class="col-md-3">
       <%= f.text_field :description, class: "form-control" %>
     </div>
-
   </div>
+
+<% if @complete %>
+  <div class="form-group">
+    <div class="checkbox col-md-offset-2 col-md-10">
+      <label>
+        <input type="checkbox"> Complete
+      </label>
+    </div>
+  </div>
+<% end %>
 
   <div class="form-group">
     <div class="col-md-offset-2 col-md-10">

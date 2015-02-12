@@ -19,13 +19,15 @@ class TasksController < ApplicationController
 
     def edit
       @task = Task.find(params[:id])
+      @complete = "Completed!"
     end
 
     def update
       @task = Task.find(params[:id])
       task_params = params.require(:task).permit(:description)
-      @task.update(task_params)
-      redirect_to tasks_path, notice: "Task was successfully updated!"
+      if @task.update(task_params)
+        redirect_to task_path(@task), notice: "Task was successfully updated!"
+      end
     end
 
     def destroy

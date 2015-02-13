@@ -16,7 +16,9 @@
   <li class="active"><%= @task.description %></li>
 </ol>
 
-<div class="col-md-2 pull-left">
-  <b><%= "Due Date" %></b> :
-  <%= @task.due_date %>
-</div>
+<% if @task.due_date %>
+  <div class="col-md-2 pull-left">
+    <b><%= "Due Date" %></b> :
+    <%= @task.due_date %>
+  </div>
+<% end %>

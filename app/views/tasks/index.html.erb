@@ -17,8 +17,13 @@
       <% @tasks.each do |task| %>
           <tr>
                 <td class="col-md-3">
-                  <a href="<%= task_path(task[:id]) %>"><%= task.description %>
-                  </a>
+                  <% if task.complete %>
+                    <s>
+                    <a href="<%= task_path(task[:id]) %>"><%= task.description %></a>
+                    </s>
+                  <% else %>
+                    <a href="<%= task_path(task[:id]) %>"><%= task.description %></a>
+                  <% end %>
                 </td>
 
                 <td class ="col-md-7">

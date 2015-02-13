@@ -15,3 +15,8 @@
   <li><%= link_to "Tasks", tasks_path %></li>
   <li class="active"><%= @task.description %></li>
 </ol>
+
+<div class="col-md-2 pull-left">
+  <b><%= "Due Date" %></b> :
+  <%= @task.due_date %>
+</div>

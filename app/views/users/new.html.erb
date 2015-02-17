@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h1>Create a new User</h1>
+</div>
+
+<%= form_for @user do |f| %>
+  <div class="form-horizontal">
+    <div class="form-group">
+      <%= f.label :first_name, class: "col-md-2 control-label" %>
+      <div class="col-md-3">
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name, class: "col-md-2 control-label" %>
+      <div class="col-md-3">
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, class: "col-md-2 control-label" %>
+      <div class="col-md-3">
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <%= f.submit "Create User", class: "btn btn-primary" %>
+        <%= link_to "cancel", users_path, class: "btn btn-default" %>
+      </div>
+    </div>
+
+  </div>
+<% end %>

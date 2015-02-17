@@ -1,0 +1,12 @@
+
+<div class = "page-header">
+  <h1>Users</h1>
+</div>
+
+<%= link_to "Create User", new_user_path %>
+
+<% @users.each do |user| %>
+First Name <%= user.first_name %>
+Last Name: <%= user.last_name %>
+Email: <%= user.email %>
+<% end %>

@@ -1,12 +1,38 @@
 
-<div class = "page-header">
+<div class="page-header">
+  <%= link_to "New User", new_user_path, class: "btn btn-info pull-right" %>
   <h1>Users</h1>
 </div>
 
-<%= link_to "Create User", new_user_path %>
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan=1>Name</th>
+      <th colspan=2>Email</th>
+    </tr>
+  </thead>
 
-<% @users.each do |user| %>
-First Name <%= user.first_name %>
-Last Name: <%= user.last_name %>
-Email: <%= user.email %>
-<% end %>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td class="col-md-3">
+        <%= user.first_name %>   <%= user.last_name %>
+      </td>
+
+      <td class ="col-md-9">
+        <%= mail_to(user.email) %>
+      </td>
+
+      <!-- <td class="col-md-2 text-right">
+        <%= link_to "Edit", edit_user_path(user[:id]), class: "btn btn-info" %>
+
+        <%= link_to "Delete", user_path(user[:id]),
+        method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger " %>
+      </td> -->
+
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>

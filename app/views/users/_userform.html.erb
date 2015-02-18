@@ -25,14 +25,22 @@
     <div class="form-group">
       <div class="col-md-offset-2 col-md-10">
         <%= f.submit button_nm, class: "btn btn-primary" %>
-
-        <% if controller.controller_name == 'users' && controller.action_name == 'edit' %>
-          <%= link_to "Delete", user_path,
-              method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger " %>
-        <% end %>
         <%= link_to "cancel", users_path, class: "btn btn-default" %>
       </div>
     </div>
+
+    <% if controller.controller_name == 'users' && controller.action_name == 'edit' %>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-3">
+          <div class="well">
+            <center>
+          <%= link_to "Delete User", user_path,
+            method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger " %>
+            </center>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
   </div>
 <% end %>

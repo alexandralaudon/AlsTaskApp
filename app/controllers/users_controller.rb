@@ -14,9 +14,9 @@ class UsersController <ApplicationController
     redirect_to users_path, notice: "User was successfully created!"
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
+  # def show
+  #   @user = User.find(params[:id])
+  # end
 
   def edit
     @user = User.find(params[:id])
@@ -25,7 +25,7 @@ class UsersController <ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "User was successfully updated!"
+      redirect_to users_path, notice: "User was successfully updated!"
     end
   end
 

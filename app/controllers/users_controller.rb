@@ -14,9 +14,9 @@ class UsersController <ApplicationController
     redirect_to users_path, notice: "User was successfully created!"
   end
 
-  # def show
-  #   @user = User.find(params[:id])
-  # end
+  def show
+    @user = User.find(params[:id])
+  end
 
   def edit
     @user = User.find(params[:id])

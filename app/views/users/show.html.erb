@@ -5,15 +5,15 @@
   <h1><%= @user.first_name %> <%= @user.last_name %> </h1>
 </div>
 
-<dl class="dl-horizontal ">
+<dl class="dl-horizontal">
   <p>
     <dt><%= "First Name" %></dt>
-    <dd><%= @user.first_name %></dd>
+    <dd><%= @user.first_name.capitalize %></dd>
   </p>
     <dt><%= "Last Name" %></dt>
-    <dd><%= @user.last_name %></dd>
+    <dd><%= @user.last_name.capitalize %></dd>
   <p>
-    <dt><%= "First Name" %></dt>
+    <dt><%= "Email" %></dt>
     <dd><%= mail_to(@user.email) %></dd>
   </p>
 </dl>

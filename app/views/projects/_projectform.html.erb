@@ -1,0 +1,20 @@
+<%= form_for @project do |p| %>
+<div class = "form-horizontal">
+  <div class="form-group">
+    <%= p.label :name, class:"col-md-2 control-label" %>
+    <div class="col-md-5">
+      <%= p.text_field :name, class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <%= p.submit button_nm, class:"btn btn-primary" %>
+      <%= link_to "Cancel", projects_path, class:"btn btn-default" %>
+    </div>
+  </div>
+
+
+
+</div>
+<% end %>

@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.save
-    redirect_to projects_path, notice: "Project was successfully created"
+    redirect_to project_path(@project), notice: "Project was successfully created"
   end
 
   def show

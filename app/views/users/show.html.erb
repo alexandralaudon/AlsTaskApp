@@ -2,7 +2,7 @@
 
 <div class="page-header">
   <%= link_to "Edit", edit_user_path, class: "btn btn-info pull-right" %>
-  <h1><%= @user.first_name %> <%= @user.last_name %> </h1>
+  <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %> </h1>
 </div>
 
 <dl class="dl-horizontal">

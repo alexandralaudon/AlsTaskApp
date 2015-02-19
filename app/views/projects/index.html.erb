@@ -13,7 +13,9 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td class="col-md-12"><%= project.name.capitalize %></td>
+        <td class="col-md-12">
+          <%= link_to project.name.capitalize, project_path(project[:id]) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

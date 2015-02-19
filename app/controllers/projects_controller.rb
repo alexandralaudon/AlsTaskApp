@@ -28,6 +28,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def destroy
+    Project.find(params[:id]).destroy
+    redirect_to projects_path, notice: "Project was successfully deleted"
+  end
+
 private
 
   def project_params

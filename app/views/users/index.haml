@@ -10,8 +10,7 @@
     - @users.each do |user|
       %tr
         %td.col-md-3
-          %a{:href => "<haml_loud"}
-            user_path(user[:id]) &gt; #{user.first_name.capitalize} #{user.last_name.capitalize}
+          =link_to "#{user.first_name.capitalize} #{user.last_name.capitalize}", user_path(user[:id])
         %td.col-md-7
           = mail_to(user.email)
         %td.col-md-2.text-right

@@ -1,0 +1,22 @@
+.page-header
+  = link_to "New User", new_user_path, class: "btn btn-info pull-right"
+  %h1 Users
+%table.table
+  %thead
+    %tr
+      %th{:colspan => "1"} Name
+      %th{:colspan => "2"} Email
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td.col-md-3
+          %a{:href => "<haml_loud"}
+            user_path(user[:id]) &gt; #{user.first_name.capitalize} #{user.last_name.capitalize}
+        %td.col-md-7
+          = mail_to(user.email)
+        %td.col-md-2.text-right
+          = link_to "Edit", edit_user_path(user[:id])
+          /
+            <haml_loud> link_to &quot;Edit&quot;, edit_user_path(user[:id]), class: &quot;btn btn-info&quot; </haml_loud>
+            <haml_loud> link_to &quot;Delete&quot;, user_path(user[:id]),
+            method: :delete, data: {confirm: &quot;Are you sure?&quot;}, class: &quot;btn btn-danger &quot; </haml_loud>

@@ -10,6 +10,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'haml', '~> 4.0.6'
+gem "haml-rails", "~> 0.8"
 
 gem 'rails_12factor', '~> 0.0.3', group: :production
 

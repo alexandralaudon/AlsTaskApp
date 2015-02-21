@@ -1,0 +1,11 @@
+.page-header
+  %h1 Frequently Asked Questions
+%ul
+  - @results.each do |info|
+    %li
+      %a{:href => "##{info.slug}"}= info.question
+- @results.each do |info|
+  %a{:name => "#{info.slug}"}
+  %h3= info.question
+  %p= info.answer
+  = link_to "top", faq_path

@@ -1,0 +1,14 @@
+.page-header
+  = link_to "Edit", edit_user_path, class: "btn btn-info pull-right"
+  %h1
+    = @user.first_name.capitalize
+    = @user.last_name.capitalize
+%dl.dl-horizontal
+  %p
+  %dt= "First Name"
+  %dd= @user.first_name.capitalize
+  %dt= "Last Name"
+  %dd= @user.last_name.capitalize
+  %p
+  %dt= "Email"
+  %dd= mail_to(@user.email)

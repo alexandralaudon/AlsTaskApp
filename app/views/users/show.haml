@@ -5,10 +5,11 @@
     = @user.last_name.capitalize
 %dl.dl-horizontal
   %p
-  %dt= "First Name"
-  %dd= @user.first_name.capitalize
-  %dt= "Last Name"
-  %dd= @user.last_name.capitalize
+    %dt= "First Name"
+    %dd= @user.first_name.capitalize
   %p
-  %dt= "Email"
-  %dd= mail_to(@user.email)
+    %dt= "Last Name"
+    %dd= @user.last_name.capitalize
+  %p
+    %dt= "Email"
+    %dd= mail_to(@user.email)

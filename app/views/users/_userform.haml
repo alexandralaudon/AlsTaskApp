@@ -1,5 +1,13 @@
 = form_for @user do |f|
   .form-horizontal
+    - if @user.errors.any?
+      .form-group
+        .col-md-offset-2.col-md-7
+          .alert.alert-danger{:role => "alert"}
+            %h2 #{@user.errors.count} error prohibited this from being saved:
+            - @user.errors.full_messages.each do |message|
+              %ul
+                %li= message
     .form-group
       = f.label :first_name, class: "col-md-2 control-label"
       .col-md-3

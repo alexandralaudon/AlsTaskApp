@@ -10,8 +10,11 @@ class UsersController <ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
-    redirect_to users_path, notice: "User was successfully created!"
+    if @user.save
+      redirect_to users_path, notice: "User was successfully created!"
+    else
+      render :new
+    end
   end
 
   def show
@@ -26,6 +29,8 @@ class UsersController <ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to users_path, notice: "User was successfully updated!"
+    else
+      render :edit
     end
   end
 

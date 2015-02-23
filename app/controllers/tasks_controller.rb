@@ -9,8 +9,11 @@ class TasksController < ApplicationController
 
     def create
       @task = Task.new(task_params)
-      @task.save
-      redirect_to task_path(@task), notice: "Task was successfully created!"
+      if @task.save
+        redirect_to task_path(@task), notice: "Task was successfully created!"
+      else
+        render :new
+      end
     end
 
     def show
@@ -26,6 +29,8 @@ class TasksController < ApplicationController
       task_params = params.require(:task).permit(:description, :complete, :due_date)
       if @task.update(task_params)
         redirect_to task_path(@task), notice: "Task was successfully updated!"
+      else
+        render :edit
       end
     end
 

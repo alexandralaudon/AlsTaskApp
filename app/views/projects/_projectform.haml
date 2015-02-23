@@ -4,7 +4,7 @@
       .form-group
         .col-md-offset-2.col-md-8
           .alert.alert-danger{role:"alert"}
-            %h2 #{@project.errors.count} error prohibited this message from being saved:
+            %h2 #{@project.errors.count} error prohibited this form from being saved:
             - @project.errors.full_messages.each do |message|
               %ul
                 %li= message

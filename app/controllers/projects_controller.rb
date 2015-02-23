@@ -9,8 +9,11 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.save
-    redirect_to project_path(@project), notice: "Project was successfully created"
+    if @project.save
+      redirect_to project_path(@project), notice: "Project was successfully created"
+    else
+      render :new
+    end
   end
 
   def show
@@ -25,6 +28,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.update(project_params)
       redirect_to project_path(@project), notice: "Project was successfully updated"
+    else
+      render :edit
     end
   end
 

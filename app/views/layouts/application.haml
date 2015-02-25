@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title= link_to "Gcamp", root_path
+    %title= "Gcamp"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -10,7 +10,7 @@
     %nav.navbar.navbar-fixed-top.navbar-inverse
       .container
         .navbar-header
-          %a.navbar-brand{:href => "#"} gCamp
+          = link_to "gCamp", root_path, class:"navbar-brand"
     .container
       / Adding create/update/destroy task note if relevant
       - if notice

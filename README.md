@@ -4,7 +4,7 @@ Alex Laudon's Travis CI Build for gCamp:
 https://travis-ci.org/alexandralaudon/gCamp
 
 gCamp Badge:
-https://travis-ci.org/alexandralaudon/gCamp.svg?branch=master
+![https://travis-ci.org/alexandralaudon/gCamp.svg?branch=master]
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

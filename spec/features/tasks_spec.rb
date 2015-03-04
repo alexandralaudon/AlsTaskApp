@@ -31,8 +31,7 @@ feature 'Tasks' do
     expect(page).to have_content('Work harddd, play harddd')
     expect(current_path).to eq(task_path(Task.first.id))
 
-    # Other way to edit page
-
+    # Ensure the other way to edit page works too
     visit tasks_path
     click_on ('Edit')
     fill_in "Description", with: 'Work wtvr, play wtvr'
@@ -46,7 +45,6 @@ feature 'Tasks' do
     expect(page).to have_content('11/11/2015')
 
     # Delete task
-
     click_on('Delete')
     expect(page).to have_content('Task was successfully deleted!')
     expect(page).to have_no_content('Work wtvr, play wtvr')

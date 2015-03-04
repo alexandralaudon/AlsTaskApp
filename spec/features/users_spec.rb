@@ -8,13 +8,14 @@ feature 'Users' do
     click_button('Create User')
     expect(page).to have_content('3 error prohibited this form from being saved:')
 
-    fill_in "First name", with: 'Alexandra'
+    fill_in 'First name', with: 'Alexandra'
     fill_in 'Last name', with: 'Kestenbaum'
     fill_in 'Email', with: 'akest@baum.com'
     click_button('Create User')
 
     expect(current_path).to eq(users_path)
-    expect(page).to have_content('User was successfully created!' && 'Alexandra Kestenbaum')
+    expect(page).to have_content('User was successfully created!')
+    expect(page).to have_content('Alexandra Kestenbaum')
   end
 
   scenario 'Users can be edited and deleted' do

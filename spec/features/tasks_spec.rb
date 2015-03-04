@@ -4,7 +4,7 @@ feature 'Tasks' do
 
   scenario 'User creates a task' do
     visit tasks_path
-    expect(page).to have_no_content('go work hard')
+    expect(page).to have_no_content('Work hard, play hard')
     click_on('New Task')
     expect(current_path).to eq(new_task_path)
 

@@ -15,7 +15,11 @@ gem "haml-rails", "~> 0.8"
 
 gem 'rails_12factor', '~> 0.0.3', group: :production
 
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+
 group :development, :test do
+
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
   gem 'launchy'

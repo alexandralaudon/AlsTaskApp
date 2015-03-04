@@ -31,6 +31,8 @@ feature 'Users' do
     fill_in 'Email', with: 'slaudon@gmail.com'
     click_button('Update User')
     expect(page).to have_content('User was successfully updated!')
+
+    #Delete functionality
     click_on('Sol Laudon')
     click_on('Edit')
     click_on('Delete User')

@@ -4,11 +4,11 @@
     .form-group
       = t.label :description, class: "col-md-2 control-label"
       .col-md-3
-        = t.text_field :description, id:"description", class: "form-control"
+        = t.text_field :description, class: "form-control"
     .form-group
       = t.label :due_date, class: "col-md-2 control-label"
       .col-md-3
-        = t.date_field :due_date, id:"due_date", class: "form-control"
+        = t.date_field :due_date, class: "form-control"
     - if controller.controller_name == 'tasks' && controller.action_name == 'edit'
       .form-group
         .col-md-offset-2.col-md-10

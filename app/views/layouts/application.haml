@@ -13,7 +13,7 @@
           = link_to "gCamp", root_path, class:"navbar-brand"
         %ul.nav.navbar-nav.navbar-right
           - if current_user
-            %li= "#{current_user.first_name} #{current_user.last_name}"
+            %li= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user.id), class:"navbar-brand"
             %li= link_to 'Sign Out', sign_out_path, class:"navbar-brand"
           - else
             %li= link_to 'Sign In', sign_in_path, class:"navbar-brand"
@@ -32,11 +32,12 @@
           |
           = link_to "FAQ", faq_path
           |
-          = link_to "Tasks", tasks_path
-          |
-          = link_to "Users", users_path
-          |
-          = link_to "Projects", projects_path
+          - if current_user
+            = link_to "Tasks", tasks_path
+            |
+            = link_to "Users", users_path
+            |
+            = link_to "Projects", projects_path
         .col-md-3.text-right
           = link_to "http://linkedin.com/in/alexandralaudon" do
             = image_tag("linkedin.jpg", height:"25")

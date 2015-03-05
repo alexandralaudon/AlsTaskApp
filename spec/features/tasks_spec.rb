@@ -3,6 +3,12 @@ require 'rails_helper'
 feature 'Tasks' do
 
   scenario 'User creates a task' do
+    User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
+    visit sign_in_path
+    fill_in "Email", with: 'bam@pow.com'
+    fill_in "Password", with: 'ouch'
+    click_button('Sign In')
+
     visit tasks_path
     expect(page).to have_no_content('Work hard, play hard')
     click_on('New Task')
@@ -19,6 +25,12 @@ feature 'Tasks' do
   end
 
   scenario 'User edits and deletes a task' do
+    User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
+    visit sign_in_path
+    fill_in "Email", with: 'bam@pow.com'
+    fill_in "Password", with: 'ouch'
+    click_button('Sign In')
+    
     Task.create!(description:'Play hard, Work hard', due_date: '02/02/2015')
 
     visit tasks_path

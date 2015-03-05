@@ -12,7 +12,11 @@
         .navbar-header
           = link_to "gCamp", root_path, class:"navbar-brand"
         %ul.nav.navbar-nav.navbar-right
-          %li= link_to 'Sign Up', sign_up_path, class:"navbar-brand"
+          - if current_user
+            %li= "#{current_user.first_name} #{current_user.last_name}"
+            %li= link_to 'Sign Out', sign_out_path, class:"navbar-brand"
+          - else
+            %li= link_to 'Sign Up', sign_up_path, class:"navbar-brand"
     .container
       / Adding create/update/destroy task note if relevant
       - if notice

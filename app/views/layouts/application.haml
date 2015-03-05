@@ -16,6 +16,7 @@
             %li= "#{current_user.first_name} #{current_user.last_name}"
             %li= link_to 'Sign Out', sign_out_path, class:"navbar-brand"
           - else
+            %li= link_to 'Sign In', sign_in_path, class:"navbar-brand"
             %li= link_to 'Sign Up', sign_up_path, class:"navbar-brand"
     .container
       / Adding create/update/destroy task note if relevant

@@ -1,0 +1,18 @@
+.container
+  .col-md-offset-3.col-md-6
+    .well
+      .page-header
+        %h1 Sign into gCamp
+      = form_tag sign_in_path do
+        .form-group
+          - if @invalid_combo.present?
+            .text-danger
+              %h6= @invalid_combo
+        .form-group
+          = label_tag :email
+          = text_field_tag :email
+        .form-group
+          = label_tag :password
+          = password_field_tag :password
+        .form-group
+          = submit_tag "Sign In", class: "btn btn-default"

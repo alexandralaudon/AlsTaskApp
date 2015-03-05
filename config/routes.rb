@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   resources :projects
 
   get 'sign-up', to: 'registrations#new'
+  post 'sign-up', to: 'registrations#create'
 
 end

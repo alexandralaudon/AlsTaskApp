@@ -3,16 +3,16 @@
     .well
       .page-header
         %h1 Sign into gCamp
-      = form_tag sign_in_path do
+      = form_tag sign_in_path do |f|
         .form-group
           - if @invalid_combo.present?
             .text-danger
               %h6= @invalid_combo
         .form-group
-          = label_tag :email
-          = text_field_tag :email
+          = label_tag :email,'Email', class: "control-label"
+          = text_field_tag :email, '', class: "form-control"
         .form-group
-          = label_tag :password
-          = password_field_tag :password
+          = label_tag :password, 'Password', class: "control-label"
+          = password_field_tag :password, '', class: "form-control"
         .form-group
           = submit_tag "Sign In", class: "btn btn-default"

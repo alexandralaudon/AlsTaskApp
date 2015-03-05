@@ -3,9 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :require_login
-
-  helper_method :user_params, :current_user
+  helper_method :user_params, :current_user, :require_login
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
@@ -17,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless current_user
-      flash[:error] = "You must sign in"
+      flash[:danger] = "You must sign in"
       redirect_to sign_in_path
     end
   end

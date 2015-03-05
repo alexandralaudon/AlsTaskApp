@@ -19,9 +19,10 @@
             %li= link_to 'Sign In', sign_in_path, class:"navbar-brand"
             %li= link_to 'Sign Up', sign_up_path, class:"navbar-brand"
     .container
-      / Adding create/update/destroy task note if relevant
       - if notice
         %p.alert.alert-success{:role => "alert"}= flash[:notice]
+      - elsif flash[:danger]
+        %p.alert.alert-danger{:role => "alert"}= flash[:danger]
       = yield
       .page-header
       %footer.footer

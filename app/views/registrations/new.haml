@@ -1,8 +1,8 @@
-.col-md-offset-3.col-md-6
-  .well
-    .page-header
-      %h1 Sign up for gCamp!
-    %center
+.container
+  .col-md-offset-3.col-md-6
+    .well
+      .page-header
+        %h1 Sign up for gCamp!
       = form_for @user, url: sign_up_path do |f|
         = render partial: "shared/errors", locals: {object: @user}
         .form-group

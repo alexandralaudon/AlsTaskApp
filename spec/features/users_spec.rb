@@ -2,15 +2,17 @@ require 'rails_helper'
 
 feature 'Users' do
 
-  scenario 'Users can be created' do
+  scenario 'can be created' do
     visit users_path
     click_on('New User')
     click_button('Create User')
-    expect(page).to have_content('3 error prohibited this form from being saved:')
+    expect(page).to have_content('4 error prohibited this form from being saved:')
 
     fill_in 'First name', with: 'Alexandra'
     fill_in 'Last name', with: 'Kestenbaum'
     fill_in 'Email', with: 'akest@baum.com'
+    fill_in 'Password', with: 'kesten'
+    fill_in 'Password confirmation', with: 'kesten'
     click_button('Create User')
 
     expect(current_path).to eq(users_path)
@@ -18,8 +20,8 @@ feature 'Users' do
     expect(page).to have_content('Alexandra Kestenbaum')
   end
 
-  scenario 'Users can be edited and deleted' do
-    User.create!(first_name: 'Alexandra', last_name: 'Kestenbaum', email:'akest@baum.com')
+  scenario 'can be edited and deleted' do
+    User.create!(first_name: 'Alexandra', last_name: 'Kestenbaum', email:'akest@baum.com', password:'kesten', password_confirmation:'kesten')
 
     visit users_path
     click_on('Alexandra Kestenbaum')

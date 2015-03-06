@@ -2,15 +2,23 @@ require 'rails_helper'
 
 feature 'Tasks' do
 
-  scenario 'User creates a task' do
+  background do
     User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
     visit sign_in_path
     fill_in "Email", with: 'bam@pow.com'
     fill_in "Password", with: 'ouch'
     click_button('Sign In')
+  end
 
-    visit tasks_path
-    expect(page).to have_no_content('Work hard, play hard')
+  scenario 'User creates a task' do
+    visit new_project_path
+    fill_in "Name", with: "Polymorphism"
+    click_button 'Create Project'
+    click_on '0 Tasks'
+    click_link "New Task"
+    
+
+    visit project_tasks_path
     click_on('New Task')
     expect(current_path).to eq(new_task_path)
 
@@ -25,12 +33,6 @@ feature 'Tasks' do
   end
 
   scenario 'User edits and deletes a task' do
-    User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
-    visit sign_in_path
-    fill_in "Email", with: 'bam@pow.com'
-    fill_in "Password", with: 'ouch'
-    click_button('Sign In')
-    
     Task.create!(description:'Play hard, Work hard', due_date: '02/02/2015')
 
     visit tasks_path

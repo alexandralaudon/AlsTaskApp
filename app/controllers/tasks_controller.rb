@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   before_action :require_login
 
   def index
-    @tasks = Task.all
+    @project = Project.find(params[:project_id])
+    @tasks = @project.tasks
   end
 
   def new
@@ -20,6 +21,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @project = @task.project
   end
 
   def edit
@@ -45,7 +47,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:description, :complete, :due_date)
+    params.require(:task).permit(:description, :complete, :due_date, :project_id)
   end
 
 end

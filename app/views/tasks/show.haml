@@ -1,14 +1,14 @@
 - if @task.complete
   .page-header
-    = link_to "Edit Task", edit_task_path, class: "btn btn-info pull-right"
+    = link_to "Edit Task", edit_project_task_path, class: "btn btn-info pull-right"
     %h1
       %s= @task.description
 - else
   .page-header
-    = link_to "Edit Task", edit_task_path, class: "btn btn-info pull-right"
+    = link_to "Edit Task", edit_project_task_path, class: "btn btn-info pull-right"
     %h1= @task.description
 %ol.breadcrumb
-  %li= link_to "Tasks", tasks_path
+  %li= link_to "Tasks", project_tasks_path
   %li.active= @task.description
 - if @task.due_date
   .col-md-12

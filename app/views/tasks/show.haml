@@ -8,8 +8,10 @@
     = link_to "Edit Task", edit_project_task_path, class: "btn btn-info pull-right"
     %h1= @task.description
 %ol.breadcrumb
+  %li= link_to "Projects", projects_path
+  %li= link_to "#{@project.name}", project_path(@project)
   %li= link_to "Tasks", project_tasks_path
-  %li.active= @task.description
+  %li.active= "#{@task.description}"
 - if @task.due_date
   .col-md-12
     %b= "Due On"

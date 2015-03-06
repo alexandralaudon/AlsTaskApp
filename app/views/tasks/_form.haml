@@ -1,4 +1,4 @@
-= form_for @task, url:project_tasks_path do |t|
+= form_for [@project, @task] do |t|
   .form-horizontal
     = render partial: "shared/errors", locals: {object: @task}
     .form-group

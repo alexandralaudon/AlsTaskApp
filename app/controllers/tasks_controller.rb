@@ -28,14 +28,15 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
-    task_params = params.require(:task).permit(:description, :complete, :due_date)
+    @project = Project.find(params[:project_id])
+    @task = @project.tasks.find(params[:id])
     if @task.update(task_params)
-      redirect_to task_path(@task), notice: "Task was successfully updated!"
+      redirect_to project_task_path(@project, @task[:id]), notice: "Task was successfully updated!"
     else
       render :edit
     end

@@ -1,23 +1,36 @@
 require 'rails_helper'
 
-feature 'Registrations' do
+feature "Registrations" do
 
-  scenario 'sign up successfully' do
+  scenario 'Guest can Sign Up successfully' do
+    visit root_path
+    within('.navbar') { click_link('Sign Up') }
+    fill_in "First name", with: 'Julius'
+    fill_in "Last name", with: 'Caesar'
+    fill_in "Email", with: 'winning@life.com'
+    fill_in "Password", with: 'Et tu Brute?'
+    fill_in "Password confirmation", with: 'Et tu Brute?'
+    click_button('Sign Up')
+    expect(page).to have_content("You have successfully signed up")
+  end
+
+  scenario 'Test where you are redirecting to and the flash message' do
+    visit root_path
+    within('.navbar') { click_link('Sign Up') }
+    fill_in "First name", with: 'Julius'
+    fill_in "Last name", with: 'Caesar'
+    fill_in "Email", with: 'winning@life.com'
+    fill_in "Password", with: 'Et tu Brute?'
+    fill_in "Password confirmation", with: 'Et tu Brute?'
+    click_button('Sign Up')
+    expect(page).to have_content("You have successfully signed up")
+    within('.jumbotron') { have_content("Your life, organized.")}
+  end
+
+  scenario 'Guest can see validation messages' do
     visit sign_up_path
-    fill_in "First name", with: 'Isaac'
-    fill_in "Last name", with: 'Newton'
-    fill_in "Email", with: 'email@hotmail.com'
-    fill_in "Password", with: 'calc'
-    fill_in "Password confirmation", with: 'calc'
-    click_button("Sign Up")
-    expect(page).to have_content('You have successfully signed up')
-    expect(current_path).to eq(root_path)
-  end
-
-  scenario 'sign out successfully' do
-  end
-
-  scenario 'sign in successfully' do
+    click_button('Sign Up')
+    expect(page).to have_content("First name can't be blank Last name can't be blank Email can't be blank Password can't be blank")
   end
 
 end

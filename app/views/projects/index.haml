@@ -5,8 +5,11 @@
   %thead
     %tr
       %th{:colspan => "1"} Name
+      %th{:colspan => "1"} Tasks
   %tbody
     - @projects.each do |project|
       %tr
-        %td.col-md-12
+        %td.col-md-8
           = link_to project.name.capitalize, project_path(project[:id])
+        %td.col-md-4
+          = link_to project.tasks.count, project_tasks_path(project)

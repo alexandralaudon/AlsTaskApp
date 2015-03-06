@@ -3,6 +3,12 @@ require 'rails_helper'
 feature 'Projects' do
 
   scenario 'create project' do
+    User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
+    visit sign_in_path
+    fill_in "Email", with: 'bam@pow.com'
+    fill_in "Password", with: 'ouch'
+    click_button('Sign In')
+
     visit projects_path
     expect(page).to have_content('Projects')
     click_on('New Project')
@@ -17,6 +23,12 @@ feature 'Projects' do
   end
 
   scenario 'edit & delete project' do
+    User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
+    visit sign_in_path
+    fill_in "Email", with: 'bam@pow.com'
+    fill_in "Password", with: 'ouch'
+    click_button('Sign In')
+    
     Project.create(name: 'Encapsulation')
 
     visit projects_path

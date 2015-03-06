@@ -25,11 +25,9 @@ feature 'Authentication' do
 
   scenario 'User can sign out successfully' do
     visit root_path
-    within(".navbar") {click_link("Sign In")}
-    fill_in "Email", with: 'tobe@nottobe.net'
-    fill_in "Password", with: 'that is the question'
-    click_button("Sign In")
+    user1 = create_and_sign_in_user
 
+    visit root_path
     within(".navbar") {click_link("Sign Out")}
     within('.jumbotron') { have_content("Your life, organized.")}
     within(".alert") {have_content("You have successfully logged out")}

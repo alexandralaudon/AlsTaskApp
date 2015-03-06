@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Tasks' do
 
   scenario 'User creates a task' do
-    user1 = create_user
+    user1 = create_and_sign_in_user
     proj1 = create_project
 
     visit projects_path
@@ -24,7 +24,7 @@ feature 'Tasks' do
   end
 
   scenario 'User edits and deletes a task' do
-    user1 = create_user
+    user1 = create_and_sign_in_user
     proj1 = create_project
     task1 = create_task(proj1)
 

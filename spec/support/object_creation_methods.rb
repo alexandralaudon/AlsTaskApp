@@ -1,4 +1,6 @@
-def create_user
+
+
+def create_and_sign_in_user
   User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
   visit sign_in_path
   fill_in "Email", with: 'bam@pow.com'

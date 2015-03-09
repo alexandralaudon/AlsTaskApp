@@ -6,8 +6,8 @@
   %li.active= 'Memberships'
 .row
   = render partial: "shared/errors", locals: {object: @membership, gap: false}
-.row
-  .well
+.well
+  .row
     = form_for [@project, @membership], html:{class: 'form-inline'} do |m|
       .form-horizontal
         = m.collection_select :user_id, User.all, :id, :full_name, {prompt: 'Please select a user...'}, {class:'form-control'}
@@ -22,7 +22,7 @@
         = form_for [@project, membership] do |f|
           .col-md-2
             = f.collection_select :role, Membership::ROLE, :to_s, :to_s, {}, {class:'form-control'}
-          .col-md-2.text-right
+          .col-md-1
             = f.submit "Update",  class:'btn btn-primary'
           .col-md-1
             = link_to '', project_membership_path(@project, membership[:id]), method: :delete, class:"glyphicon glyphicon-remove"

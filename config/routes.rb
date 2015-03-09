@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :projects do
     resources :tasks
-    resources :memberships, only: [:index, :create]
+    resources :memberships, only: [:index, :create, :destroy]
   end
 
   get 'sign-up', to: 'registrations#new'

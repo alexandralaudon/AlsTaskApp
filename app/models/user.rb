@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :memberships
-  validates :first_name, :last_name, :email, presence:true
-  validates :email, uniqueness: true
+  validates_presence_of :first_name, :last_name, :email
+  validates_uniqueness_of :email
 
   has_secure_password
 

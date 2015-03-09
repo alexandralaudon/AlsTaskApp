@@ -3,4 +3,12 @@
 %ol.breadcrumb
   %li= link_to 'Projects', projects_path
   %li= link_to @project.name, project_path(@project)
-  %li.active= 'Membership'
+  %li.active= 'Memberships'
+.well
+  = form_for [@project, @membership], html:{class: 'form-inline'} do |m|
+    .form-horizontal
+      = m.collection_select :user_id, User.all, :id, :full_name, {prompt: 'Please select a user...'}, {class:'form-control'}
+      = m.collection_select :role, Membership::ROLE, :to_s, :to_s, {}, {class:'form-control'}
+      = m.submit 'Add New Member', class:'btn btn-primary'
+- @project.memberships.each do |membership|
+  = link_to "asdf#{membership.user_id}", user_path(membership.user_id)

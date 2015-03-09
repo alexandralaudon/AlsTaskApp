@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
-  belongs_to :project
+  has_many :memberships
   validates :first_name, :last_name, :email, presence:true
   validates :email, uniqueness: true
 
   has_secure_password
+
+  def full_name
+    "#{first_name.capitalize} #{last_name.capitalize}"
+  end
 end

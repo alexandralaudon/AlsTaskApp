@@ -9,4 +9,4 @@
 %p
   = link_to pluralize(@tasks.count, 'Task'), project_tasks_path(@project)
 %p
-  = link_to pluralize(@users.count, 'Membership'), project_memberships_path(@project)
+  = link_to pluralize(@memberships.count, 'Membership'), project_memberships_path(@project)

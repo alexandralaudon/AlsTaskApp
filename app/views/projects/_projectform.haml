@@ -1,6 +1,6 @@
 = form_for @project do |p|
   .form-horizontal
-    = render partial: "shared/errors", locals: {object: @project}
+    = render partial: "shared/errors", locals: {object: @project, gap: true}
     .form-group
       = p.label :name, class:"col-md-2 control-label"
       .col-md-5

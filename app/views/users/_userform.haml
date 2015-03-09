@@ -1,6 +1,6 @@
 = form_for @user do |f|
   .form-horizontal
-    = render partial: "shared/errors", locals: {object: @user}
+    = render partial: "shared/errors", locals: {object: @user, gap: true}
     .form-group
       = f.label :first_name, class: "col-md-2 control-label"
       .col-md-5

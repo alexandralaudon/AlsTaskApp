@@ -11,7 +11,7 @@ class MembershipsController < ApplicationController
     @project = Project.find(params[:project_id])
     @memberships = @project.memberships.reject {|m| m.id.nil?}
     @membership = @project.memberships.new(membership_params)
-    # @membership = Membership.new(membership_params.merge(project_id: params[:project_id]))
+
     if @membership.save
       flash[:notice] = "#{@membership.user.full_name} was successfully added"
       redirect_to project_memberships_path

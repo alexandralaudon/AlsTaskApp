@@ -12,7 +12,7 @@ feature 'Users' do
     visit users_path
     click_on('New User')
     click_button('Create User')
-    expect(page).to have_content('4 error prohibited this form from being saved:')
+    expect(page).to have_content('4 errors prohibited this form from being saved:')
 
     fill_in 'First name', with: 'Alexandra'
     fill_in 'Last name', with: 'Kestenbaum'

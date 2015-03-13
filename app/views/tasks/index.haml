@@ -25,5 +25,4 @@
             = task.due_date.strftime("%_m/%d/%Y")
         %td.col-md-2.text-right
           = link_to "Edit", edit_project_task_path(@project, task[:id]), class: "btn btn-info"
-          = link_to "Delete", project_task_path(@project, task[:id]),                                     |
-            method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger " |
+          = link_to '', project_task_path(@project, task[:id]), method: :delete, class:"glyphicon glyphicon-remove"

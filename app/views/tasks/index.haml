@@ -19,6 +19,7 @@
               %a{:href => "#{project_task_path(@project, task[:id])}"}= task.description
           - else
             %a{:href => "#{project_task_path(@project, task[:id])}"}= task.description
+          %span.badge= task.comments.count
         %td.col-md-7
           - if task.due_date
             = task.due_date.strftime("%_m/%d/%Y")

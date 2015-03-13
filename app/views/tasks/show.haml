@@ -17,3 +17,17 @@
     %b= "Due On"
     \:
     \#{@task.due_date.strftime("%m/%d/%Y")}
+
+%h3 Comments
+
+- @comments.each do |comment|
+  %br
+  = link_to comment.user.full_name, user_path(comment.user_id)
+  = comment.message
+  = time_ago_in_words(comment.created_at)
+.container
+  = form_for [@task, @comment] do |f|
+    .col-md-offset-3.col-md-6
+      = f.text_area :message, class: 'form-control'
+    .col-md-offset-3.col-md-2
+      = f.submit "Add Comment", class:'btn btn-primary'

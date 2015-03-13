@@ -42,7 +42,7 @@ feature 'Tasks' do
     within(".breadcrumb") {click_link "Tasks"}
 
     # Delete task
-    click_on('Delete')
+    page.find(".glyphicon-remove").click
     expect(page).to have_content('Task was successfully deleted!')
     expect(page).to have_no_content('modeling classes appropriate to the problem')
 

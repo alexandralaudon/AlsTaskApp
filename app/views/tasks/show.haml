@@ -13,11 +13,10 @@
   %li= link_to "Tasks", project_tasks_path
   %li.active= "#{@task.description}"
 - if @task.due_date
-  .col-md-12
-    %b= "Due On"
-    \:
-    \#{@task.due_date.strftime("%m/%d/%Y")}
-
+  %b= "Due On"
+  \:
+  \#{@task.due_date.strftime("%m/%d/%Y")}
+  %br
 %h3 Comments
 
 - @comments.each do |comment|

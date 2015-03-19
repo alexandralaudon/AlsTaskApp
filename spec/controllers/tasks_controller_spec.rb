@@ -11,7 +11,7 @@ describe TasksController do
     it "assigns all tasks" do
       task = create_task(@project)
 
-      get :index, :project_id => @project.id
+      get :index, project_id: @project.id
       expect(response).to render_template(:index)
     end
   end
@@ -43,6 +43,14 @@ describe TasksController do
 
       expect(response).to render_template(:new)
       expect(assigns(:task)).to be_a(Task)
+    end
+  end
+
+  describe 'GET #show' do
+    it 'assigns one particular task' do
+      task = create_task(@project)
+      get :show, project_id: @project.id, id: task.id
+      expect(response).to render_template(:show)
     end
   end
 

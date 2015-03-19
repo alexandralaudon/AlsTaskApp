@@ -28,6 +28,13 @@ describe TasksController do
       expect {
         post :create, project_id: @project.id, task: {description: "Simplifying complex reality", due_date: '01/01/2000'}
       }.to change {Task.all.count}.by(1)
+
+      task = Task.last
+      expect(task.description).to eq "Simplifying complex reality"
+      expect(task.due_date.strftime("%m/%d/%Y")).to eq '01/01/2000'
+      expect(task.project_id).to eq @project.id
+      expect(flash[:notice]).to eq "Task was successfully created!"
+      expect(response).to redirect_to project_task_path(task.project_id, task.id)
     end
     it 'does not create a new task when invalid parameters are passed' do
     end

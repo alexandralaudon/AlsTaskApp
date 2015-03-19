@@ -4,10 +4,11 @@ describe CommentsController do
   describe "POST #create" do
     describe "on success" do
       it "creates a new comment when valid parameters are passed" do
-        user = User.create!(first_name: "Isaac", last_name: "Newton", email: "invented@calc.sin", password: "password")
+
+        user = create_user
         session[:user_id] = user.id
-        project = Project.create!(name: "How to get better at programming")
-        task = Task.create!(description: "I need to work on my specs", project_id: project.id)
+        project = create_project
+        task = create_task(project)
 
         expect {
           post :create, task_id: task.id, comment: { message: "I work, or do I...?"}
@@ -23,10 +24,10 @@ describe CommentsController do
     describe "on failure" do
       it "does not add a new comment if it is invalid" do
 
-        user = User.create!(first_name: "Isaac", last_name: "Newton", email: "invented@calc.sin", password: "password")
+        user = create_user
         session[:user_id] = user.id
-        project = Project.create!(name: "How to get better at programming")
-        task = Task.create!(description: "I need to work on my specs", project_id: project.id)
+        project = create_project
+        task = create_task(project)
 
         expect {
           post :create, task_id: task.id, comment: { message: ""}
@@ -39,7 +40,7 @@ describe CommentsController do
       end
     end
 
-    
+
 
   end
 end

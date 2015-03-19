@@ -54,6 +54,16 @@ describe TasksController do
     end
   end
 
+  describe 'GET #edit' do
+    it 'assigns a previous task' do
+      task = create_task(@project)
+      get :edit, project_id: @project.id, id: task.id
+      expect(response).to render_template(:edit)
+    end
+  end
+
+  describe 'PUT'
+
 
 
 end

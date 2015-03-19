@@ -11,7 +11,7 @@ describe TasksController do
     it "assigns all tasks" do
       task = create_task(@project)
 
-      get :index, project_id: @project.id
+      get :index, project_id: task.project_id
       expect(response).to render_template(:index)
     end
   end
@@ -49,7 +49,7 @@ describe TasksController do
   describe 'GET #show' do
     it 'assigns one particular task' do
       task = create_task(@project)
-      get :show, project_id: @project.id, id: task.id
+      get :show, project_id: task.project_id, id: task.id
       expect(response).to render_template(:show)
     end
   end
@@ -57,12 +57,35 @@ describe TasksController do
   describe 'GET #edit' do
     it 'assigns a previous task' do
       task = create_task(@project)
-      get :edit, project_id: @project.id, id: task.id
+      get :edit, project_id: task.project_id, id: task.id
       expect(response).to render_template(:edit)
     end
   end
 
-  describe 'PUT'
+  describe 'PATCH #update' do
+    describe 'on success' do
+      it 'updates a task with valid attributes' do
+        task = create_task(@project)
+        expect {
+          patch :update, project_id: task.project_id, id: task.id, task: {description: 'What did the fox say?'}
+        }.to change{task.reload.description}.from('Simplifying complex reality').to('What did the fox say?')
+
+        expect(response).to redirect_to project_task_path(task.project_id, task.id)
+        expect(flash[:notice]).to eq "Task was successfully updated!"
+      end
+    end
+    describe 'on failure' do
+      it 'does not update because of invalid attributes' do
+        task = create_task(@project)
+        expect {
+          patch :update, project_id: task.project_id, id: task.id, task: {description: nil, due_date: '03/03/3012'}
+        }.to_not change{task.reload.description}
+
+        expect(assigns(:task)).to eq(task)
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 
 
 

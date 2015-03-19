@@ -37,6 +37,12 @@ describe TasksController do
       expect(response).to redirect_to project_task_path(task.project_id, task.id)
     end
     it 'does not create a new task when invalid parameters are passed' do
+      expect {
+        post :create, project_id: @project.id, task: {due_date: '02/02/2002'}
+      }.to_not change {Task.all.count}
+
+      expect(response).to render_template(:new)
+      expect(assigns(:task)).to be_a(Task)
     end
   end
 

@@ -1,15 +1,16 @@
 require 'rails_helper'
 
 describe CommentsController do
+  before(:each) do
+    user = create_user
+    session[:user_id] = user.id
+    project = create_project
+    task = create_task(project)
+  end
+
   describe "POST #create" do
     describe "on success" do
       it "creates a new comment when valid parameters are passed" do
-
-        user = create_user
-        session[:user_id] = user.id
-        project = create_project
-        task = create_task(project)
-
         expect {
           post :create, task_id: task.id, comment: { message: "I work, or do I...?"}
         }.to change {Comment.all.count}.by(1)
@@ -23,12 +24,6 @@ describe CommentsController do
 
     describe "on failure" do
       it "does not add a new comment if it is invalid" do
-
-        user = create_user
-        session[:user_id] = user.id
-        project = create_project
-        task = create_task(project)
-
         expect {
           post :create, task_id: task.id, comment: { message: ""}
         }.to_not change {Comment.all.count}
@@ -39,8 +34,6 @@ describe CommentsController do
         expect(assigns(:comment)).to be_a(Comment)
       end
     end
-
-
 
   end
 end

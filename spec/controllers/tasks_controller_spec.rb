@@ -87,6 +87,18 @@ describe TasksController do
     end
   end
 
+  describe 'DELETE #destroy' do
+    it 'deletes a task' do
+      task = create_task(@project)
+      expect {
+        delete :destroy, project_id: task.project_id, id: task.id
+      }.to change{Task.all.count}.from(1).to(0)
+
+      expect(response).to redirect_to project_tasks_path(task.project_id)
+      expect(flash[:notice]).to eq "Task was successfully deleted!"
+    end
+  end
+
 
 
 end

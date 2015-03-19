@@ -84,9 +84,21 @@ describe ProjectsController do
         }.to_not change{project.reload.name}
 
         expect(project.name).to eq 'Recovery Of Silver From Photographic Film Waste'
+        expect(assigns(:project)).to eq(project)
         expect(response).to render_template(:edit)
-
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'deletes a project' do
+      project = create_project
+      expect {
+        delete :destroy, id: project.id
+      }.to change{Project.all.count}.from(1).to(0)
+
+      expect(flash[:notice]).to eq 'Project was successfully deleted'
+      expect(response).to redirect_to projects_path
     end
   end
 

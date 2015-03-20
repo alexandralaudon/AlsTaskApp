@@ -91,4 +91,16 @@ describe UsersController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    it 'deletes a specific user object' do
+      user2 = create_user(email: "destroy@me.com")
+      expect {
+        delete :destroy, id: user2.id
+      }.to change{User.all.count}.from(2).to(1)
+
+      expect(flash[:notice]).to eq 'User was successfully deleted!'
+      expect(response).to redirect_to users_path
+    end
+  end
 end

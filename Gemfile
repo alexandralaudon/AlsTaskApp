@@ -17,10 +17,10 @@ gem 'rails_12factor', '~> 0.0.3', group: :production
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'faker'
 
 
 group :development, :test do
-  gem 'faker'
   gem 'pry'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'

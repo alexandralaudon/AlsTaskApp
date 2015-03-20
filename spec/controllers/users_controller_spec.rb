@@ -27,8 +27,26 @@ describe UsersController do
       it 'assigns a new user with valid parameters' do
         expect {
           post :create, user: {first_name: "Tom", last_name: "Hanks", email: "Wilson@waters.com", password: "password"}
-        }.to change{User.all.count}.by(1)
+        }.to change{User.all.count}.from(1).to(2)
+
+        user = User.last
+        expect(user.first_name).to eq "Tom"
+        expect(user.email).to eq "Wilson@waters.com"
+        expect(flash[:notice]).to eq 'User was successfully created!'
+        expect(response).to redirect_to users_path
+      end
+    end
+    describe 'on failure' do
+      it 'does not assign a new user with invalid parameters' do
+        expect {
+          post :create, user: {first_name: "Tom", last_name: nil, email: "Wilson@waters.com", password: "password"}
+        }.to_not change{User.all.count}
+
+        expect(assigns(:user)).to be_a(User)
+        expect(response).to render_template(:new)
       end
     end
   end
+
+  
 end

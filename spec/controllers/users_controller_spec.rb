@@ -16,6 +16,19 @@ describe UsersController do
 
   describe 'GET #new' do
     it 'assigns a new user object' do
+       get :new
+       expect(response).to render_template(:new)
+       expect(assigns(:user)).to be_a_new(User)
+    end
+  end
+
+  describe 'POST #create' do
+    describe 'on success' do
+      it 'assigns a new user with valid parameters' do
+        expect {
+          post :create, user: {first_name: "Tom", last_name: "Hanks", email: "Wilson@waters.com", password: "password"}
+        }.to change{User.all.count}.by(1)
+      end
     end
   end
 end

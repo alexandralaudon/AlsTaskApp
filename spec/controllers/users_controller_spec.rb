@@ -48,5 +48,47 @@ describe UsersController do
     end
   end
 
-  
+  describe 'GET #show' do
+    it 'assigns one specific user Object' do
+      user2 = create_user(first_name: "Time", last_name: "Watch", email: "whatever@bro.sef")
+      get :show, id: user2.id
+
+      expect(response).to render_template(:show)
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'specifies a specific instance of User for editing' do
+      user2 = create_user(first_name: "Time", last_name: "Watch", email: "whatever@bro.sef")
+      get :edit, id: user2.id
+
+      expect(response).to render_template(:edit)
+    end
+  end
+
+  describe 'PATCH #update' do
+    describe 'on success' do
+      it 'updates the specific User object if valid parameters are passed' do
+        user2 = create_user(first_name: "Time", last_name: "Watch", email: "whatever@bro.sef")
+        expect {
+          patch :update, id: user2.id, user: {first_name:"Bag", last_name:"Boy"}
+        }.to change{user2.reload.first_name}.from("Time").to("Bag")
+
+        expect(flash[:notice]).to eq 'User was successfully updated!'
+        expect(response).to redirect_to users_path
+      end
+    end
+    describe 'on failure' do
+      it 'does not update the specific User object if invalid parameters are passed' do
+        user2 = create_user(first_name: "Time", last_name: "Watch", email: "whatever@bro.sef")
+
+        expect {
+          patch :update, id: user2.id, user: {last_name: nil}
+        }.to_not change{user2.reload.last_name}
+
+        expect(user2.last_name).to eq 'Watch'
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end

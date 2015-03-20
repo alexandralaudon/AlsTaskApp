@@ -33,3 +33,12 @@ def create_task(project,options={})
   }
   Task.create!(defaults.merge(options))
 end
+
+def create_comment(task,user,options={})
+  defaults = {
+    message: 'let me Google that for you',
+    task_id: task.id,
+    user_id: user.id
+  }
+  Comment.create!(defaults.merge(options))
+end

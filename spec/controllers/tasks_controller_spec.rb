@@ -49,6 +49,13 @@ describe TasksController do
   describe 'GET #show' do
     it 'assigns one particular task' do
       task = create_task(@project)
+      user2 = create_user(email: 'whadda@say.yyyy')
+
+      comment1 = create_comment(task, user2, message:'thats whaz up')
+      comment2 = create_comment(task, user2, message:'I told you so')
+      expect(comment1.message).to eq 'thats whaz up'
+      expect(comment2.message).to eq 'I told you so'
+
       get :show, project_id: task.project_id, id: task.id
       expect(response).to render_template(:show)
     end

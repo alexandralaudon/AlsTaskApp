@@ -26,7 +26,7 @@ feature 'Projects' do
 
   scenario 'edit & delete project' do
     project = Project.create!(name: 'Encapsulation')
-    membership = Membership.create!(project_id: project.id, user_id: @user.id)
+    membership = create_membership(project,@user)
 
     visit projects_path
     within('.table') {click_on('Encapsulation')}

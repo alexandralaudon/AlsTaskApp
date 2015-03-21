@@ -19,7 +19,7 @@ feature 'Projects' do
     fill_in 'Name', with: 'Encapsulation'
     click_button('Create Project')
     expect(page).to have_content('Project was successfully created')
-    expect(current_path).to eq(project_path(Project.last.id))
+    expect(current_path).to eq(project_tasks_path(Project.last.id))
   end
 
   scenario 'edit & delete project' do

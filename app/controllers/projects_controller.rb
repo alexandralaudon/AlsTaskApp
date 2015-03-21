@@ -11,8 +11,8 @@ class ProjectsController < PrivateController
   def create
     @project = Project.new(project_params)
     if @project.save
-      @membership = @project.memberships.create!(user_id: current_user.id, role: "Owner")    
-      redirect_to project_path(@project), notice: "Project was successfully created"
+      @membership = @project.memberships.create!(user_id: current_user.id, role: "Owner")
+      redirect_to project_tasks_path(@project.id), notice: "Project was successfully created"
     else
       render :new
     end

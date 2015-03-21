@@ -32,7 +32,7 @@ describe ProjectsController do
         project = Project.last
         expect(project.name).to eq 'Solar Distillation'
         expect(flash[:notice]).to eq 'Project was successfully created'
-        expect(response).to redirect_to project_path(project.id)
+        expect(response).to redirect_to project_tasks_path(project.id)
       end
     end
     describe 'on failure' do

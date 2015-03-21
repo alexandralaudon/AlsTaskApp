@@ -1,5 +1,4 @@
-class ProjectsController < ApplicationController
-  before_action :require_login
+class ProjectsController < PrivateController
 
   def index
     @projects = Project.all

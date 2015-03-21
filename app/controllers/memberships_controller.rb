@@ -1,5 +1,4 @@
-class MembershipsController < ApplicationController
-  before_action :require_login
+class MembershipsController < PrivateController
 
   def index
     @project = Project.find(params[:project_id])

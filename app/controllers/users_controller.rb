@@ -1,5 +1,4 @@
-class UsersController <ApplicationController
-  before_action :require_login
+class UsersController < PrivateController
 
   def index
     @users = User.all

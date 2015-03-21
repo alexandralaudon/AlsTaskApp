@@ -1,5 +1,4 @@
-class TasksController < ApplicationController
-  before_action :require_login
+class TasksController < PrivateController
   before_action :project_instance_variable, except: [:destroy]
 
   def index

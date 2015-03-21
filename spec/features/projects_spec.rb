@@ -12,7 +12,7 @@ feature 'Projects' do
     visit projects_path
     expect(page).to have_content('Projects')
     click_on('New Project', match: :first)
-    
+
     click_button('Create Project')
     expect(page).to have_content('1 error prohibited this form from being saved:')
 

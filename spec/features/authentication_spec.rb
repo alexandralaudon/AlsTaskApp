@@ -14,7 +14,7 @@ feature 'Authentication' do
     click_button("Sign In")
 
     within(".alert") {have_content("You have successfully signed in")}
-    within('.jumbotron') { have_content("Your life, organized.")}
+    within(:css, 'h1') {have_content("Projects")}
   end
 
   scenario 'User can see validation messages' do

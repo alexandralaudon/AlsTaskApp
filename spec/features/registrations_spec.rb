@@ -24,7 +24,7 @@ feature "Registrations" do
     fill_in "Password confirmation", with: 'Et tu Brute?'
     click_button('Sign Up')
     expect(page).to have_content("You have successfully signed up")
-    within('.jumbotron') { have_content("Your life, organized.")}
+    within(:css, 'h1') {have_content("New Project")}
   end
 
   scenario 'Guest can see validation messages' do

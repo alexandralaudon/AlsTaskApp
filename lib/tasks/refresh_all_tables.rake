@@ -22,20 +22,20 @@ namespace :refresh do
       puts "10 projects generated. Project_id_array: #{project_id_array}"
 
       25.times do |task|
-        Task.create!(description: Faker::Hacker.say_something_smart, complete: [true,false].shuffle.first, due_date: Faker::Date.forward(30), project_id: project_id_array.shuffle.first)
+        Task.create!(description: Faker::Hacker.say_something_smart, complete: [true,false].sample, due_date: Faker::Date.forward(30), project_id: project_id_array.sample)
       end
       task_id_array = Task.pluck(:id)
       puts "25 tasks generated. Task_id_array: #{task_id_array}"
 
 
       50.times do |comment|
-        Comment.create!(message: Faker::Company.bs, user_id: user_id_array.shuffle.first, task_id: task_id_array.shuffle.first)
+        Comment.create!(message: Faker::Company.bs, user_id: user_id_array.sample, task_id: task_id_array.sample)
       end
       puts "50 comments generated"
 
       membership_role = ['Member', 'Owner']
       50.times do |membership|
-        Membership.create(role: membership_role.shuffle.first, project_id: project_id_array.shuffle.first, user_id: user_id_array.shuffle.first)
+        Membership.create(role: membership_role.sample, project_id: project_id_array.sample, user_id: user_id_array.sample)
       end
       puts "50 memberships generated"
 

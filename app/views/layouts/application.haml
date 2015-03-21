@@ -10,21 +10,7 @@
     %nav.navbar.navbar-fixed-top.navbar-inverse
       .container
         .navbar-header
-          - if controller.class.ancestors.include?(PrivateController)
-            = link_to "gCamp", projects_path, class:"navbar-brand"
-            %ul.nav.navbar-nav
-              %li.dropdown
-                = link_to('#', class: 'dropdown-toggle', data:{toggle: 'dropdown'}, role: 'button') do
-                  Projects
-                  %span.caret
-                %ul.dropdown-menu{role: 'menu'}
-                  - current_user.projects.each do |project|
-                    %li= link_to "#{project.name}", project_path(project.id)
-                  %li.divider
-                    %li= link_to "New Project", new_project_path
-              %li= link_to 'Users', users_path
-          - else
-            = link_to "gCamp", root_path, class:"navbar-brand"
+          = render partial: "shared/navbar_public_vs_private", locals: {object: current_user, controller_location: controller}
         %ul.nav.navbar-nav.navbar-right
           - if current_user
             %li= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user.id)
@@ -40,32 +26,4 @@
       = yield
       .page-header
       %footer.footer
-        - if controller.class.ancestors.include?(PrivateController)
-          %center
-            = link_to "Home", root_path
-            |
-            = link_to "About", about_path
-            |
-            = link_to "Terms", terms_path
-            |
-            = link_to "FAQ", faq_path
-        - else
-          .col-md-9
-            = link_to "About", about_path
-            |
-            = link_to "Terms", terms_path
-            |
-            = link_to "FAQ", faq_path
-            - if current_user
-              = link_to "| Users", users_path
-              |
-              = link_to "Projects", projects_path
-          .col-md-3.text-right
-            = link_to "http://linkedin.com/in/alexandralaudon" do
-              = image_tag("linkedin.jpg", height:"25")
-            = link_to "https://github.com/alexandralaudon" do
-              = image_tag("github.jpg", height:"25")
-            = link_to "https://twitter.com/AlexandraLaudon" do
-              = image_tag("twitter.jpg", height:"25")
-            = link_to "https://students.gschool.it/students/269" do
-              = image_tag("gschool.jpg", height:"25")
+        = render partial: "shared/footer_public_vs_private", locals: {object: current_user, controller_location: controller}

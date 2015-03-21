@@ -1,0 +1,15 @@
+- if controller_location.class.ancestors.include?(PrivateController)
+  = link_to "gCamp", projects_path, class:"navbar-brand"
+  %ul.nav.navbar-nav
+    %li.dropdown
+      = link_to('#', class: 'dropdown-toggle', data:{toggle: 'dropdown'}, role: 'button') do
+        Projects
+        %span.caret
+      %ul.dropdown-menu{role: 'menu'}
+        - object.projects.each do |project|
+          %li= link_to "#{project.name}", project_path(project.id)
+        %li.divider
+          %li= link_to "New Project", new_project_path
+    %li= link_to 'Users', users_path
+- else
+  = link_to "gCamp", root_path, class:"navbar-brand"

@@ -28,7 +28,7 @@ feature 'Projects' do
     fill_in "Email", with: 'bam@pow.com'
     fill_in "Password", with: 'ouch'
     click_button('Sign In')
-    
+
     Project.create(name: 'Encapsulation')
 
     visit projects_path

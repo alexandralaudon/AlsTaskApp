@@ -1,13 +1,13 @@
 class MembershipsController < PrivateController
+  before_action :project_instance_variable, except: [:destroy]
+  before_action :require_memberships_for_projects_tasks
 
   def index
-    @project = Project.find(params[:project_id])
     @memberships = @project.memberships
     @membership = Membership.new
   end
 
   def create
-    @project = Project.find(params[:project_id])
     @memberships = @project.memberships.reject {|m| m.id.nil?}
     @membership = @project.memberships.new(membership_params)
 
@@ -20,7 +20,6 @@ class MembershipsController < PrivateController
   end
 
   def update
-    @project = Project.find(params[:project_id])
     @memberships = @project.memberships.reject {|m| m.id.nil?}
     @membership = @project.memberships.find(params[:id])
     if @membership.update(membership_params)
@@ -39,6 +38,10 @@ class MembershipsController < PrivateController
   end
 
   private
+
+  def project_instance_variable
+    @project = Project.find(params[:project_id])
+  end
 
   def membership_params
     params.require(:membership).permit(:project_id, :user_id, :role)

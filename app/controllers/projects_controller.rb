@@ -1,7 +1,9 @@
 class ProjectsController < PrivateController
 
+  before_action :require_memberships, only: [:show, :edit, :update, :destroy]
+
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   def new

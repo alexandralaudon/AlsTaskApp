@@ -42,3 +42,12 @@ def create_comment(task,user,options={})
   }
   Comment.create!(defaults.merge(options))
 end
+
+def create_membership(project, user, options={})
+  defaults = {
+    project_id: project.id,
+    user_id: user.id,
+    role: "Owner"
+  }
+  Membership.create!(defaults.merge(options))
+end

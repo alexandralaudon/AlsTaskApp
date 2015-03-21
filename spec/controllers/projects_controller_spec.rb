@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe ProjectsController do
   before(:each) do
-    user = create_user
-    session[:user_id] = user.id
+    @user = create_user
+    session[:user_id] = @user.id
   end
 
   describe 'GET #index' do
@@ -50,6 +50,8 @@ describe ProjectsController do
   describe 'GET #show' do
     it 'assigns one specific project object' do
       project = create_project
+      create_membership(project, @user)
+
       get :show, id: project.id
       expect(response).to render_template(:show)
     end
@@ -58,6 +60,8 @@ describe ProjectsController do
   describe 'GET #edit' do
     it 'assigns a specific project Object for editing' do
       project = create_project
+      create_membership(project, @user)
+
       get :edit, id: project.id
       expect(response).to render_template(:edit)
     end
@@ -67,6 +71,7 @@ describe ProjectsController do
     describe 'on success' do
       it 'updates a project with valid attributes passed' do
         project = create_project(name: 'Custard Apple Seed Oil As Pesticide')
+        create_membership(project, @user)
         expect {
           patch :update, id: project.id, project: {name: 'Extraction Of Oil From Rosemary Leaves'}
         }.to change{project.reload.name}.from('Custard Apple Seed Oil As Pesticide').to('Extraction Of Oil From Rosemary Leaves')
@@ -79,6 +84,8 @@ describe ProjectsController do
     describe 'on failure' do
       it 'does not update a project with invalid attributes passed' do
         project = create_project(name: 'Recovery Of Silver From Photographic Film Waste')
+        create_membership(project, @user)
+
         expect {
           patch :update, id: project.id, project: {name: nil}
         }.to_not change{project.reload.name}
@@ -93,6 +100,8 @@ describe ProjectsController do
   describe 'DELETE #destroy' do
     it 'deletes a project' do
       project = create_project
+      create_membership(project, @user)
+      
       expect {
         delete :destroy, id: project.id
       }.to change{Project.all.count}.from(1).to(0)

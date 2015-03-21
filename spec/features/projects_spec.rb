@@ -2,13 +2,15 @@ require 'rails_helper'
 
 feature 'Projects' do
 
-  scenario 'create project' do
-    User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
+  before :each do
+    @user = User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
     visit sign_in_path
     fill_in "Email", with: 'bam@pow.com'
     fill_in "Password", with: 'ouch'
     click_button('Sign In')
+  end
 
+  scenario 'create project' do
     visit projects_path
     expect(page).to have_content('Projects')
     click_on('New Project', match: :first)
@@ -23,16 +25,11 @@ feature 'Projects' do
   end
 
   scenario 'edit & delete project' do
-    User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
-    visit sign_in_path
-    fill_in "Email", with: 'bam@pow.com'
-    fill_in "Password", with: 'ouch'
-    click_button('Sign In')
-
-    Project.create(name: 'Encapsulation')
+    project = Project.create!(name: 'Encapsulation')
+    membership = Membership.create!(project_id: project.id, user_id: @user.id)
 
     visit projects_path
-    click_on('Encapsulation')
+    within('.table') {click_on('Encapsulation')}
     click_on('Edit')
     fill_in 'Name', with: 'Encapsulate'
     click_button('Update Project')

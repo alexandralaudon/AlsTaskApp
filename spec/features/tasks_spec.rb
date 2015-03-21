@@ -2,12 +2,20 @@ require 'rails_helper'
 
 feature 'Tasks' do
 
+  before :each do
+    @user = create_user
+    visit sign_in_path
+    fill_in "Email", with: 'bam@pow.com'
+    fill_in "Password", with: 'ouch'
+    click_button('Sign In')
+  end
+
   scenario 'User creates a task' do
-    user1 = create_and_sign_in_user
-    proj1 = create_project
+    project = Project.create!(name: 'Encapsulation')
+    membership = Membership.create!(project_id: project.id, user_id: @user.id)
 
     visit projects_path
-    click_on("Abstraction")
+    within('.table') {click_on('Encapsulation')}
     click_on '0 Tasks'
 
     within(".breadcrumb") {have_content("Projects Abstraction Tasks")}
@@ -20,16 +28,16 @@ feature 'Tasks' do
     fill_in "Due date", with: "12/12/2015"
     click_button('Create Task')
     expect(page).to have_content('Task was successfully created!')
-    expect(page).to have_content('Projects Abstraction Tasks Work hard, play hard')
+    expect(page).to have_content('Work hard, play hard')
   end
 
   scenario 'User edits and deletes a task' do
-    user1 = create_and_sign_in_user
-    proj1 = create_project
-    task1 = create_task(proj1)
+    project = Project.create!(name: 'Encapsulation')
+    task = create_task(project)
+    membership = Membership.create!(project_id: project.id, user_id: @user.id)
 
     visit projects_path
-    click_link "Abstraction"
+    within('.table') {click_link "Encapsulation"}
     click_on "1 Task"
 
     click_on('Simplifying complex reality')

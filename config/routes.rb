@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
-  get '/terms', to: 'terms#index'
-  get '/about', to: 'terms#about_page'
-  get '/faq', to: 'common_questions#index'
+  root              'static_pages#index'
+  get '/terms', to: 'static_pages#terms'
+  get '/about', to: 'static_pages#about_page'
+  get '/faq',   to: 'static_pages#faq'
 
   resources :tasks, only: [] do
     resources :comments, only: [:create]
@@ -14,9 +14,10 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
-  get 'sign-up', to: 'registrations#new'
+  get 'sign-up',  to: 'registrations#new'
   post 'sign-up', to: 'registrations#create'
-  get 'sign-in', to: 'authentication#new'
+  
+  get 'sign-in',  to: 'authentication#new'
   post 'sign-in', to: 'authentication#create'
   get 'sign-out', to: 'authentication#destroy'
 

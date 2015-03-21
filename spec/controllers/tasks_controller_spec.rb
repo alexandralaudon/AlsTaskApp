@@ -5,6 +5,7 @@ describe TasksController do
     user = create_user
     session[:user_id] = user.id
     @project = create_project
+    membership = create_membership(@project, user)
   end
 
   describe 'GET #index' do

@@ -1,5 +1,6 @@
 class TasksController < PrivateController
   before_action :project_instance_variable, except: [:destroy]
+  before_action :require_memberships_for_projects_tasks
 
   def index
     @tasks = @project.tasks

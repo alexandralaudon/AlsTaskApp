@@ -39,8 +39,13 @@ class UsersController < PrivateController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    session[:user_id] = nil if personal_profile?(user)
-    redirect_to users_path, notice: "User was successfully deleted!"
+    flash[:notice] =  "User was successfully deleted!"
+    if personal_profile?(user)
+      session[:user_id] = nil
+      redirect_to sign_in_path
+    else
+      redirect_to users_path
+    end
   end
 
   private

@@ -60,6 +60,8 @@ describe UsersController do
   describe 'GET #edit' do
     it 'specifies a specific instance of User for editing' do
       user2 = create_user(first_name: "Time", last_name: "Watch", email: "whatever@bro.sef")
+      session[:user_id] = user2.id
+
       get :edit, id: user2.id
 
       expect(response).to render_template(:edit)

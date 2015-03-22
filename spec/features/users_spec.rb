@@ -27,18 +27,16 @@ feature 'Users' do
   end
 
   scenario 'can be edited and deleted' do
-    User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
+    user1 = User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
     visit sign_in_path
     fill_in "Email", with: 'bam@pow.com'
     fill_in "Password", with: 'ouch'
     click_button('Sign In')
 
-    User.create!(first_name: 'Alexandra', last_name: 'Kestenbaum', email:'akest@baum.com', password:'kesten', password_confirmation:'kesten')
-
     visit users_path
-    click_on('Alexandra Kestenbaum')
-    expect(page).to have_content('First Name Alexandra')
-    expect(page).to have_content('Last Name Kestenbaum')
+    within('.table') {click_on('Muhammad Ali')}
+    expect(page).to have_content('First Name Muhammad')
+    expect(page).to have_content('Last Name Ali')
     click_on('Edit')
     fill_in 'First name', with: 'Sol'
     fill_in 'Last name', with: 'Laudon'
@@ -47,7 +45,7 @@ feature 'Users' do
     expect(page).to have_content('User was successfully updated!')
 
     #Delete functionality
-    click_on('Sol Laudon')
+    within('.table') {click_on('Sol Laudon')}
     click_on('Edit')
     click_on('Delete User')
     expect(page).to have_content('User was successfully deleted!')

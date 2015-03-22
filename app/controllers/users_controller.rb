@@ -1,4 +1,5 @@
 class UsersController < PrivateController
+  helper_method :personal_profile?
 
   def index
     @users = User.all
@@ -23,6 +24,7 @@ class UsersController < PrivateController
 
   def edit
     @user = User.find(params[:id])
+    record_not_found if current_user.id != @user.id
   end
 
   def update
@@ -35,8 +37,16 @@ class UsersController < PrivateController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    user = User.find(params[:id])
+    user.destroy
+    session[:user_id] = nil if personal_profile?(user)
     redirect_to users_path, notice: "User was successfully deleted!"
+  end
+
+  private
+
+  def personal_profile?(user)
+    current_user.id == user.id
   end
 
 

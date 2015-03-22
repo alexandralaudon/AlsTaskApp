@@ -1,6 +1,10 @@
 class PrivateController < ApplicationController
   before_action :require_login
 
+  def record_not_found 
+    render plain: "404 Not Found", status: 404
+  end
+
   def ensure_project_owner_or_member
     @project = Project.find(params[:id])
     unless @project.users.pluck(:id).include?(current_user.id)
@@ -32,5 +36,6 @@ class PrivateController < ApplicationController
       redirect_to projects_path
     end
   end
+
 
 end

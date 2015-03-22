@@ -1,5 +1,5 @@
 .page-header
-  = link_to "Edit", edit_user_path, class: "btn btn-info pull-right"
+  = link_to "Edit", edit_user_path, class: "btn btn-info pull-right" if personal_profile?(@user)
   %h1
     = @user.first_name.capitalize
     = @user.last_name.capitalize

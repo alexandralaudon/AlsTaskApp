@@ -1,6 +1,7 @@
 class MembershipsController < PrivateController
   before_action :project_instance_variable, except: [:destroy]
   before_action :require_memberships_for_projects_tasks
+  before_action :require_ownership_for_memberships, only: [:edit, :update, :destroy]
 
   def index
     @memberships = @project.memberships

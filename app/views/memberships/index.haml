@@ -24,11 +24,17 @@
           = f.collection_select :role, Membership::ROLE, :to_s, :to_s, {}, {class:'form-control'}
         .col-md-1
           = f.submit "Update",  class:'btn btn-primary'
-        .col-md-1
-          = link_to '', project_membership_path(@project, membership[:id]), method: :delete, class:"glyphicon glyphicon-remove"
+        .col-md-3
+          - if @memberships.where(role: "Owner").count == 1 && membership.role == 'Owner'
+            = 'You are the last owner'
+          - else
+            = link_to '', project_membership_path(@project, membership[:id]), method: :delete, class:"glyphicon glyphicon-remove"
       - else
         .col-md-offset-2.col-md-3
           = "#{membership.role}"
           - if membership.user_id == current_user.id
             .col-md-1.pull-right
-              = link_to '', project_membership_path(@project, membership[:id]), method: :delete, class:"glyphicon glyphicon-remove"
+              - if @memberships.where(role: "Owner").count == 1
+                = 'You are the last owner'
+              - else
+                = link_to '', project_membership_path(@project, membership[:id]), method: :delete, class:"glyphicon glyphicon-remove"

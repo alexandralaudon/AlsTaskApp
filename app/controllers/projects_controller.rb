@@ -1,5 +1,5 @@
 class ProjectsController < PrivateController
-  before_action :require_memberships_for_projects, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_project_owner_or_member, only: [:show, :edit, :update, :destroy]
   before_action :require_ownership_for_projects, only: [:edit, :update, :destroy]
 
   def index

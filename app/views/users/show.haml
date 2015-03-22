@@ -10,6 +10,7 @@
   %p
     %dt= "Last Name"
     %dd= @user.last_name.capitalize
-  %p
-    %dt= "Email"
-    %dd= mail_to(@user.email)
+  - if personal_profile?(@user)
+    %p
+      %dt= "Email"
+      %dd= mail_to(@user.email)

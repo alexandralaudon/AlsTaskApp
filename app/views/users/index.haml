@@ -12,7 +12,8 @@
         %td.col-md-3
           =link_to "#{user.first_name.capitalize} #{user.last_name.capitalize}", user_path(user[:id])
         %td.col-md-7
-          = mail_to(user.email)
+          - if personal_profile?(user)
+            = mail_to(user.email)
         %td.col-md-2.text-right
-          - if current_user.id == user.id
+          - if personal_profile?(user)
             = link_to "Edit", edit_user_path(user[:id])

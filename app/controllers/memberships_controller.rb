@@ -1,7 +1,7 @@
 class MembershipsController < PrivateController
   before_action :project_instance_variable, except: [:destroy]
   before_action :require_memberships_for_projects_tasks
-  before_action :require_ownership_for_memberships, only: [:edit, :update, :destroy]
+  before_action :require_ownership_for_memberships, only: [:edit, :update]
 
   def index
     @memberships = @project.memberships
@@ -35,7 +35,13 @@ class MembershipsController < PrivateController
     member = Membership.find(params[:id])
     member.destroy
     flash[:notice] = "#{member.user.full_name} was successfully removed"
-    redirect_to project_memberships_path
+
+    if member.user_id == current_user.id
+      redirect_to projects_path
+    else
+      redirect_to project_memberships_path
+    end
+
   end
 
   private

@@ -1,6 +1,7 @@
 class ProjectsController < PrivateController
-  before_action :ensure_project_owner_or_member, only: [:show, :edit, :update, :destroy]
-  before_action :require_ownership_for_projects, only: [:edit, :update, :destroy]
+  before_action :project_instance_variable, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_owner_or_member, only: [:show, :edit, :update, :destroy]
+  before_action :require_project_ownership, only: [:edit, :update, :destroy]
 
   def index
     @projects = current_user.projects
@@ -21,18 +22,15 @@ class ProjectsController < PrivateController
   end
 
   def show
-    @project = Project.find(params[:id])
     @tasks = @project.tasks
     @memberships = @project.memberships
   end
 
   def edit
-    @project = Project.find(params[:id])
     @task = @project.tasks
   end
 
   def update
-    @project = Project.find(params[:id])
     if @project.update(project_params)
       redirect_to project_path(@project), notice: "Project was successfully updated"
     else
@@ -41,11 +39,15 @@ class ProjectsController < PrivateController
   end
 
   def destroy
-    Project.find(params[:id]).destroy
+    @project.destroy
     redirect_to projects_path, notice: "Project was successfully deleted"
   end
 
 private
+
+  def project_instance_variable
+    @project = Project.find(params[:id])
+  end
 
   def project_params
     params.require(:project).permit(:name, :created_at, :updated_at)

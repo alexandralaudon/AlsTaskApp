@@ -9,9 +9,10 @@ namespace :refresh do
       User.destroy_all
       Project.destroy_all
 
-      15.times do |user|
-        User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password")
+      14.times do |user|
+        User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", admin: false)
       end
+      User.create!(first_name: "Emily", last_name: "With the coolest hat", email: "admin@example.com", password: "password", admin: true)
       User.first.update_attributes(admin: true)
       user_id_array = User.pluck(:id)
       puts "15 users generated. User_id_array: #{user_id_array}"

@@ -12,6 +12,7 @@ namespace :refresh do
       15.times do |user|
         User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password")
       end
+      User.first.update_attributes(admin: true)
       user_id_array = User.pluck(:id)
       puts "15 users generated. User_id_array: #{user_id_array}"
 

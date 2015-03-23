@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = 'You have successfully signed in'
-      redirect_to projects_path
+      redirect_to(session[:return_to] || projects_path)
     else
       @invalid_combo = 'Email / Password combination is invalid'
       render :new
@@ -17,6 +17,7 @@ class AuthenticationController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:return_to] = nil
     flash[:notice] = 'You have successfully logged out'
     redirect_to root_path
   end

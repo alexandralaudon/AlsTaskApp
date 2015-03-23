@@ -23,7 +23,7 @@
         = f.password_field :password_confirmation, class: "form-control"
     .form-group
       .col-md-offset-2.col-md-10
-        - if current_user.admin
+        - if ensure_admin
           = f.check_box :admin
           Admin
           %p

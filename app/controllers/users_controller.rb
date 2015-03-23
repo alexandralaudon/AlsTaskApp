@@ -24,7 +24,7 @@ class UsersController < PrivateController
 
   def edit
     @user = User.find(params[:id])
-    record_not_found unless current_user.id == @user.id || current_user.admin
+    record_not_found unless current_user.id == @user.id || ensure_admin
   end
 
   def update
@@ -40,7 +40,7 @@ class UsersController < PrivateController
     user = User.find(params[:id])
     user.destroy
     flash[:notice] =  "User was successfully deleted!"
-    if personal_profile?(user)
+    if current_user.id == user.id
       session[:user_id] = nil
       redirect_to sign_in_path
     else
@@ -51,7 +51,7 @@ class UsersController < PrivateController
   private
 
   def personal_profile?(user)
-    current_user.id == user.id
+    current_user.id == user.id || ensure_admin
   end
 
 

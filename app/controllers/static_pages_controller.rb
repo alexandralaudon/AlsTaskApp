@@ -12,11 +12,11 @@ class StaticPagesController < ApplicationController
   end
 
   def about_page
-    @projects     = Project.all
-    @tasks        = Task.all
-    @memberships  = Membership.all
-    @users        = User.all
-    @comments     = Comment.all
+    @projects     = Project.all.count
+    @tasks        = Task.all.count
+    @memberships  = Membership.all.count
+    @users        = User.all.count
+    @comments     = Comment.all.count
   end
 
 end

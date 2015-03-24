@@ -12,7 +12,7 @@ namespace :refresh do
       14.times do |user|
         User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", admin: false)
       end
-      User.first.update_attribute(admin: true)
+      User.first.update_attributes(admin: true)
       User.create!(first_name: "Emily", last_name: "with the coolest hat", email: "admin@example.com", password: 'password', admin: true)
       user_id_array = User.pluck(:id)
       puts "#{User.all.count} users generated. User_id_array: #{user_id_array}"

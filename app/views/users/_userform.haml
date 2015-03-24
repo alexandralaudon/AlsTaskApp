@@ -23,11 +23,15 @@
         = f.password_field :password_confirmation, class: "form-control"
     .form-group
       .col-md-offset-2.col-md-10
+        - if ensure_admin
+          = f.check_box :admin
+          Admin
+          %p
         = f.submit button_nm, class: "btn btn-primary"
         = link_to "cancel", users_path, class: "btn btn-default"
     - if controller.controller_name == 'users' && controller.action_name == 'edit'
       .form-group
-        .col-md-offset-2.col-md-3
+        .col-md-offset-2.col-md-5
           .well
             %center
               = link_to "Delete User", user_path,                                           |

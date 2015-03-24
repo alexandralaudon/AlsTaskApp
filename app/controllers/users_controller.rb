@@ -24,7 +24,7 @@ class UsersController < PrivateController
 
   def edit
     @user = User.find(params[:id])
-    record_not_found if current_user.id != @user.id
+    record_not_found unless personal_profile?(@user) || ensure_admin
   end
 
   def update

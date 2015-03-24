@@ -5,7 +5,8 @@ def create_user(options={})
     last_name: 'Ali',
     email: 'bam@pow.com',
     password: 'ouch',
-    password_confirmation: 'ouch'
+    password_confirmation: 'ouch',
+    admin: true
   }
   User.create(defaults.merge(options))
 end

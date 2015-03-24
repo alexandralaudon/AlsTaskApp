@@ -32,6 +32,6 @@
           %li Comments on tasks and documents
           %li Get email notifications
 - @quotes.each do |quote|
-  = quote[:text]
+  = "#{quote.quote_text}"
   %p.text-muted
-    %i= quote[:author]
+    %i= "#{quote.author}"

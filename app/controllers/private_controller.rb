@@ -1,7 +1,7 @@
 class PrivateController < ApplicationController
   before_action :require_login
 
-  helper_method :ensure_admin
+  helper_method :ensure_admin, :membership_sharing?
 
   def ensure_admin
     current_user.admin
@@ -23,6 +23,12 @@ class PrivateController < ApplicationController
       flash[:danger] = 'You do not have access'
       redirect_to projects_path
     end
+  end
+
+  def membership_sharing?(user)
+    current_user_projects = current_user.projects.pluck(:project_id)
+    user_projects = user.memberships.pluck(:project_id)
+    (current_user_projects & user_projects).empty?
   end
 
 end

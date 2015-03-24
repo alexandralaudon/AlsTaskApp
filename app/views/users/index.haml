@@ -12,7 +12,7 @@
         %td.col-md-3
           =link_to "#{user.first_name.capitalize} #{user.last_name.capitalize}", user_path(user[:id])
         %td.col-md-7
-          - if personal_profile?(user)
+          - if personal_profile?(user) || membership_sharing?(user)
             = mail_to(user.email)
         %td.col-md-2.text-right
           - if personal_profile?(user)

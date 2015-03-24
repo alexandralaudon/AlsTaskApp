@@ -10,7 +10,7 @@
   %p
     %dt= "Last Name"
     %dd= @user.last_name.capitalize
-  - if personal_profile?(@user)
+  - if personal_profile?(@user) || membership_sharing?(@user)
     %p
       %dt= "Email"
       %dd= mail_to(@user.email)

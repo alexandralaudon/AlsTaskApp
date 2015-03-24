@@ -1,18 +1,9 @@
 class CommonQuestion
-
+  attr_reader :question, :answer, :slug
   def initialize(question, answer)
     @question = question
     @answer = answer
     @slug = @question.downcase.gsub(" ","-")
-  end
-  def question
-    @question
-  end
-  def answer
-    @answer
-  end
-  def slug
-    @slug
   end
 
   def self.create_array()

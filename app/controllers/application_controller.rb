@@ -15,9 +15,14 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless current_user
+      session[:return_to] ||= request.url
       flash[:danger] = "You must sign in"
       redirect_to sign_in_path
     end
+  end
+
+  def redirect_back_or_default(default)
+    redirect_to session[:return_to]
   end
 
 end

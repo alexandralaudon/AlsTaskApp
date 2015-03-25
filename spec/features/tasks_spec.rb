@@ -12,7 +12,7 @@ feature 'Tasks' do
 
   scenario 'User creates a task' do
     project = Project.create!(name: 'Encapsulation')
-    membership = Membership.create!(project_id: project.id, user_id: @user.id)
+    membership = create_membership(project, @user)
 
     visit projects_path
     within('.table') {click_on('Encapsulation')}
@@ -34,7 +34,7 @@ feature 'Tasks' do
   scenario 'User edits and deletes a task' do
     project = Project.create!(name: 'Encapsulation')
     task = create_task(project)
-    membership = Membership.create!(project_id: project.id, user_id: @user.id)
+    membership = create_membership(project, @user)
 
     visit projects_path
     within('.table') {click_link "Encapsulation"}

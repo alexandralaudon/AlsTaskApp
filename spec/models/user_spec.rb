@@ -7,7 +7,7 @@ describe 'User' do
     @user2 = User.create(first_name:'Alex', last_name: nil, email: nil, password: nil, password_confirmation: nil)
     @user3 = User.create(first_name:'Alex', last_name: 'Laudon', email: nil, password: nil, password_confirmation: nil)
     @user4 = User.create(first_name:'Alex', last_name: 'Laudon', email: 'alaudon@gmail.com', password: nil, password_confirmation: nil)
-    @user5 = User.create(first_name:'Alex', last_name: 'Laudon', email: 'alaudon@gmail.com', password: 'laudon', password_confirmation: 'laudon')
+    @user5 = User.create(first_name:'Alex', last_name: 'kbaum', email: 'alaudon@gmail.com', password: 'laudon', password_confirmation: 'laudon')
   end
 
   it 'validates all User attributes' do
@@ -16,6 +16,11 @@ describe 'User' do
     expect(@user3.errors.size).to eq(2)
     expect(@user4.errors[:password].present?).to eq(true)
     expect(@user5.errors.size).to eq(0)
+  end
+
+  it 'ensure all methods in model work' do
+    expect(@user5.full_name).to eq('Alex Kbaum')
+    expect(@user1.full_name).to eq(' ')
   end
 
 end

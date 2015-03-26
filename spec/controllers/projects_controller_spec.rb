@@ -128,33 +128,37 @@ describe ProjectsController do
     end
 
     describe '#ensure_owner_or_member' do
-      project = create_project
+      before :each do
+        @project = create_project
+      end
       it 'expects user to not be an owner or member of the particular project' do
         user2 = create_user(email: 'lalala@lalala.com')
-        membership = create_membership(project, user2)
-        get :show, id: project.id
+        membership = create_membership(@project, user2)
+        get :show, id: @project.id
         expect(response).to redirect_to projects_path
         expect(flash[:danger]).to eq 'You do not have access to that project'
       end
 
       it 'expects user to be an owner or member of the particular project' do
-        membership = create_membership(project, @user)
-        get :show, id: project.id
+        membership = create_membership(@project, @user)
+        get :show, id: @project.id
         expect(response).to render_template(:show)
       end
     end
 
     describe '#require_project_ownership' do
-      project = create_project
+      before :each do
+        @project = create_project
+      end
       it 'expects project member to be unable to update or delete projects' do
-        membership = create_membership(project, @user, role: 'Member')
-        get :edit, id: project.id
+        membership = create_membership(@project, @user, role: 'Member')
+        get :edit, id: @project.id
         expect(response).to redirect_to projects_path
       end
 
       it 'expects project owner to update or delete projects' do
-        membership = create_membership(project, @user, role: 'Owner')
-        get :edit, id: project.id
+        membership = create_membership(@project, @user, role: 'Owner')
+        get :edit, id: @project.id
         expect(response).to render_template(:edit)
       end
     end

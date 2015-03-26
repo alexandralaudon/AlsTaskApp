@@ -1,4 +1,7 @@
 class UsersController < PrivateController
+  before_action :set_user_variable, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_current_user_cannot_change, only: [:edit, :update, :destroy]
+
   helper_method :personal_profile?
 
   def index
@@ -19,16 +22,13 @@ class UsersController < PrivateController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
-    record_not_found unless personal_profile?(@user) || ensure_admin?
+    record_not_found unless ensure_admin?
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to users_path, notice: "User was successfully updated!"
     else
@@ -37,7 +37,6 @@ class UsersController < PrivateController
   end
 
   def destroy
-    user = User.find(params[:id])
     user.destroy
     flash[:notice] =  "User was successfully deleted!"
     if personal_profile?(user)
@@ -49,6 +48,10 @@ class UsersController < PrivateController
   end
 
   private
+
+  def set_user_variable
+    @user = User.find(params[:id])
+  end
 
   def personal_profile?(user)
     current_user.id == user.id

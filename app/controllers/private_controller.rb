@@ -1,14 +1,16 @@
 class PrivateController < ApplicationController
   before_action :require_login
 
-  helper_method :ensure_admin?, :membership_sharing?
-
-  def ensure_admin?
-    current_user.admin
-  end
+  helper_method :membership_sharing?
 
   def record_not_found
     render plain: "404 Not Found", status: 404
+  end
+
+  def ensure_current_user_cannot_change
+    if !current_user
+      record_not_found
+    end
   end
 
   def ensure_owner_or_member

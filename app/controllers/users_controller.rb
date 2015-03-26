@@ -37,9 +37,9 @@ class UsersController < PrivateController
   end
 
   def destroy
-    user.destroy
+    @user.destroy
     flash[:notice] =  "User was successfully deleted!"
-    if personal_profile?(user)
+    if personal_profile?(@user)
       session[:user_id] = nil
       redirect_to sign_in_path
     else
@@ -57,5 +57,12 @@ class UsersController < PrivateController
     current_user.id == user.id
   end
 
+  def user_params
+    if ensure_admin?
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+    else
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
+  end
 
 end

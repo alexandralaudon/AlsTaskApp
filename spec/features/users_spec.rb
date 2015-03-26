@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 feature 'Users' do
+  before :each do
+    @user1 = create_user(first_name: 'aaaa', last_name: 'bbbb', email: 'aaaa@bbbb.com')
+    @user2 = create_user
+  end
 
   scenario 'can be created' do
-    User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
     visit sign_in_path
     fill_in "Email", with: 'bam@pow.com'
     fill_in "Password", with: 'ouch'
@@ -27,7 +30,6 @@ feature 'Users' do
   end
 
   scenario 'can be edited and deleted' do
-    user1 = User.create(first_name:'Muhammad', last_name: 'Ali', email: 'bam@pow.com', password: 'ouch', password_confirmation: 'ouch')
     visit sign_in_path
     fill_in "Email", with: 'bam@pow.com'
     fill_in "Password", with: 'ouch'

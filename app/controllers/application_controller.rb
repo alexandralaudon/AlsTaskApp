@@ -9,14 +9,6 @@ class ApplicationController < ActionController::Base
     current_user.admin
   end
 
-  def user_params
-    if ensure_admin?
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
-    else
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
-    end
-  end
-
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id].present?
   end

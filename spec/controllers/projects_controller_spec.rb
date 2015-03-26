@@ -6,15 +6,15 @@ describe ProjectsController do
     session[:user_id] = @user.id
   end
 
-  describe 'permissions: non-logged-in users' do
-    it 'should redirects non logged in users to sign in path' do
-      session[:user_id] = nil
-      @user.destroy
-      get :index
-      expect(flash[:warning]).to eq 'You must sign in'
-      expect(response).to redirect_to sign_in_path
-    end
-  end
+  # describe 'permissions: non-logged-in users' do
+  #   it 'should redirects non logged in users to sign in path' do
+  #     session[:user_id] = nil
+  #     @user.destroy
+  #     get :index
+  #     expect(flash[:warning]).to eq 'You must sign in'
+  #     expect(response).to redirect_to sign_in_path
+  #   end
+  # end
 
   describe 'GET #index' do
     it 'assigns all projects' do

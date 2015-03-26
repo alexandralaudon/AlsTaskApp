@@ -4,7 +4,7 @@ class ProjectsController < PrivateController
   before_action :require_project_ownership, only: [:edit, :update, :destroy]
 
   def index
-    ensure_admin ? @projects = Project.all : @projects = current_user.projects
+    ensure_admin? ? @projects = Project.all : @projects = current_user.projects
   end
 
   def new

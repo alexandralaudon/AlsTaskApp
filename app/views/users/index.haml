@@ -15,5 +15,5 @@
           - if personal_profile?(user) || membership_sharing?(user)
             = mail_to(user.email)
         %td.col-md-2.text-right
-          - if personal_profile?(user)
+          - if personal_profile?(user) || ensure_admin?
             = link_to "Edit", edit_user_path(user[:id])

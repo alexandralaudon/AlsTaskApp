@@ -33,7 +33,7 @@
         .col-md-offset-2.col-md-3
           = "#{membership.role}"
           - if membership.user_id == current_user.id
-            .col-md-1.pull-right
+            .col-md-4.pull-right
               - if @memberships.where(role: "Owner").count == 1
                 = 'You are the last owner'
               - else

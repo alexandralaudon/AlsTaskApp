@@ -1,8 +1,8 @@
 class MembershipsController < PrivateController
   before_action :project_instance_variable
   before_action :ensure_owner_or_member
-  before_action :require_project_ownership, only: [:edit, :update]
-  before_action :memberships_must_have_one_owner, only: [:update, :destroy]
+  before_action :require_project_ownership, only: [:edit, :update, :destroy ]
+  # before_action :memberships_must_have_one_owner, only: [:update, :destroy]
 
   def index
     @memberships = @project.memberships
@@ -57,7 +57,7 @@ class MembershipsController < PrivateController
 
   def memberships_must_have_one_owner
     @membership = Membership.find(params[:id])
-    unless @membership.role == 'Owner' && @project.memberships.where(role: "Owner").count > 1
+    unless @membership.role == 'Owner' && @project.memberships.where(role: "Owner").count == 1
       flash[:danger] = 'Projects must have at least one owner'
       redirect_to project_memberships_path
     end

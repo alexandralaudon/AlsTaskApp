@@ -6,6 +6,16 @@ describe ProjectsController do
     session[:user_id] = @user.id
   end
 
+  describe 'permissions: non-logged-in users' do
+    it 'should redirects non logged in users to sign in path' do
+      session[:user_id] = nil
+      @user.destroy
+      get :index
+      expect(flash[:warning]).to eq 'You must sign in'
+      expect(response).to redirect_to sign_in_path
+    end
+  end
+
   describe 'GET #index' do
     it 'assigns all projects' do
       project = create_project
@@ -101,7 +111,7 @@ describe ProjectsController do
     it 'deletes a project' do
       project = create_project
       create_membership(project, @user)
-      
+
       expect {
         delete :destroy, id: project.id
       }.to change{Project.all.count}.from(1).to(0)

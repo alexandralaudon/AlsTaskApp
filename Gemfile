@@ -21,6 +21,7 @@ gem 'faker'
 
 
 group :development, :test do
+  gem 'database_cleaner', '~> 1.4.1'
   gem 'pry'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'

@@ -33,7 +33,7 @@ class PrivateController < ApplicationController
     else
       current_user_projects = current_user.projects.pluck(:project_id)
       user_projects = user.memberships.pluck(:project_id)
-      (current_user_projects & user_projects).empty?
+      !(current_user_projects & user_projects).empty?
     end
   end
 

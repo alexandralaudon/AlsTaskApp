@@ -55,4 +55,24 @@ feature 'Users' do
 
   end
 
+  scenario 'PERMISSIONS #membership_sharing?' do
+    @user2.update_attributes(admin: false)
+    visit sign_in_path
+    fill_in "Email", with: 'bam@pow.com'
+    fill_in "Password", with: 'ouch'
+    click_button('Sign In')
+
+    project = create_project
+    membership = create_membership(project, @user1, role: 'Member')
+
+    #with no joint memberships
+    visit users_path
+    expect(page).to_not have_content('aaaa@bbbb.com')
+
+    #with joint memberships
+    membership2 = create_membership(project, @user2, role:'Member')
+    visit users_path
+    expect(page).to have_content('aaaa@bbbb.com')
+  end
+
 end

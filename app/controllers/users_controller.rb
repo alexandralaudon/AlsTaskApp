@@ -25,7 +25,7 @@ class UsersController < PrivateController
   end
 
   def edit
-    record_not_found unless ensure_admin?
+    record_not_found unless ensure_admin? || personal_profile?(@user)
   end
 
   def update
@@ -59,9 +59,9 @@ class UsersController < PrivateController
 
   def user_params
     if ensure_admin?
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pt_token, :admin)
     else
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :pt_token)
     end
   end
 

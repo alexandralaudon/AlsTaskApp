@@ -25,4 +25,7 @@
           = f.label :password_confirmation, class: "control-label"
           = f.password_field :password_confirmation, class: "form-control"
         .form-group
+          = f.label :pt_token, 'Pivotal Tracker Token', class: "control-label"
+          = f.password_field :pt_token, class: "form-control"
+        .form-group
           = f.submit "Sign Up", class: "btn btn-default"

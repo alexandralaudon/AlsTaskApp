@@ -2,11 +2,11 @@
   .form-horizontal
     = render partial: "shared/errors", locals: {object: @user, gap: true}
     .form-group
-      = f.label :first_name, class: "col-md-2 control-label"
+      = f.label :first_name, 'First Name', class: "col-md-2 control-label"
       .col-md-5
         = f.text_field :first_name, class: "form-control"
     .form-group
-      = f.label :last_name, class: "col-md-2 control-label"
+      = f.label :last_name, 'Last Name', class: "col-md-2 control-label"
       .col-md-5
         = f.text_field :last_name, class: "form-control"
     .form-group
@@ -18,9 +18,13 @@
       .col-md-5
         = f.password_field :password, class: "form-control"
     .form-group
-      = f.label :password_confirmation, class: "col-md-2 control-label"
+      = f.label :password_confirmation, 'Password Confirmation', class: "col-md-2 control-label"
       .col-md-5
         = f.password_field :password_confirmation, class: "form-control"
+    .form-group
+      = f.label :pt_token, 'Pivotal Tracker Token', class: "col-md-2 control-label"
+      .col-md-5
+        = f.text_field :pt_token, class: "form-control"
     .form-group
       .col-md-offset-2.col-md-10
         - if ensure_admin?

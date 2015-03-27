@@ -11,5 +11,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}".titleize
   end
 
+  def hidden
+    stars = pt_token.length - 4
+    "#{pt_token[0..3]}#{'*'*stars}"
+  end
+
 
 end

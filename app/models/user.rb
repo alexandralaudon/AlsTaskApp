@@ -12,8 +12,10 @@ class User < ActiveRecord::Base
   end
 
   def hidden
-    stars = pt_token.length - 4
-    "#{pt_token[0..3]}#{'*'*stars}"
+    if pt_token != ""
+      stars = pt_token.length - 4
+      "#{pt_token[0..3]}#{'*'*stars}"
+    end
   end
 
 

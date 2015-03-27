@@ -17,11 +17,11 @@ feature 'Users' do
     click_button('Create User')
     expect(page).to have_content('4 errors prohibited this form from being saved:')
 
-    fill_in 'First name', with: 'Alexandra'
-    fill_in 'Last name', with: 'Kestenbaum'
+    fill_in 'First Name', with: 'Alexandra'
+    fill_in 'Last Name', with: 'Kestenbaum'
     fill_in 'Email', with: 'akest@baum.com'
     fill_in 'Password', with: 'kesten'
-    fill_in 'Password confirmation', with: 'kesten'
+    fill_in 'Password Confirmation', with: 'kesten'
     click_button('Create User')
 
     expect(current_path).to eq(users_path)
@@ -40,8 +40,8 @@ feature 'Users' do
     expect(page).to have_content('First Name Muhammad')
     expect(page).to have_content('Last Name Ali')
     click_on('Edit')
-    fill_in 'First name', with: 'Sol'
-    fill_in 'Last name', with: 'Laudon'
+    fill_in 'First Name', with: 'Sol'
+    fill_in 'Last Name', with: 'Laudon'
     fill_in 'Email', with: 'slaudon@gmail.com'
     click_button('Update User')
     expect(page).to have_content('User was successfully updated!')

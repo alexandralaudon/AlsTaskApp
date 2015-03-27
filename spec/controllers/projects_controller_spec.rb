@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 describe ProjectsController do
-  before(:each) do
+  before :each do
     @user = create_user(admin: false)
     session[:user_id] = @user.id
   end
-
+  
   describe 'Project Actions:' do
 
     describe 'GET #index' do

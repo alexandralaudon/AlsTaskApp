@@ -5,6 +5,7 @@ class ProjectsController < PrivateController
 
   def index
     ensure_admin? ? @projects = Project.all : @projects = current_user.projects
+    @tracker_projects = TrackerAPI.new.projects(current_user.pt_token)
   end
 
   def new

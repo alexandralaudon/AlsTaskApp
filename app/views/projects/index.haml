@@ -13,3 +13,15 @@
           = link_to project.name.capitalize, project_path(project[:id])
         %td.col-md-4
           = link_to project.tasks.count, project_tasks_path(project)
+- if current_user.pt_token
+  .page-header
+    %h1 Pivotal Tracker Projects
+  %table.table
+    %thead
+      %tr
+        %th{:colspan => "1"} Name
+    %tbody
+      - @tracker_projects.each do |project|
+        %tr
+          %td.col-md-8
+            = project[:name]

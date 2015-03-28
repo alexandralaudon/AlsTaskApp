@@ -14,6 +14,7 @@ gem 'haml', '~> 4.0.6'
 gem "haml-rails", "~> 0.8"
 
 gem 'rails_12factor', '~> 0.0.3', group: :production
+gem 'faraday', '~> 0.9.0'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

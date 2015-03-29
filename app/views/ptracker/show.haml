@@ -1,11 +1,8 @@
 .page-header
   - @projects.each do |project|
     = project[:id]
+    -# make this a conditional statement that requires pivotal tracker ID to match stories project_id
     %h1= project[:name]
-
--# %ol.breadcrumb
--#   %li= link_to 'Projects', projects_path
--#   %li.active= @project[:name]
 
 %table.table.table-striped
   %thead

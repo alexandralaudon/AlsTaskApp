@@ -24,4 +24,4 @@
       - @tracker_projects.each do |project|
         %tr
           %td.col-md-8
-            = project[:name]
+            = link_to project[:name], ptracker_path(project[:id])

@@ -1,6 +1,5 @@
 class PrivateController < ApplicationController
   before_action :require_login
-
   helper_method :membership_sharing?
 
   def record_not_found

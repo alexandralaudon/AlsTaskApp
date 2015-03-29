@@ -1,0 +1,25 @@
+.page-header
+  - @projects.each do |project|
+    = project[:id]
+    %h1= project[:name]
+
+-# %ol.breadcrumb
+-#   %li= link_to 'Projects', projects_path
+-#   %li.active= @project[:name]
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th{:colspan => "1"} Story
+      %th{:colspan => "1"} Estimate
+      %th{:colspan => "1"} Labels
+      %th{:colspan => "1"} Current State
+  %tbody
+    - @stories.each do |story|
+      %tr
+        %td= link_to story[:name], story[:url]
+        %td= story[:estimate]
+        - labels = story[:labels].map do |label|
+          - label[:name]
+        %td= labels.join(', ')
+        %td= story[:current_state]

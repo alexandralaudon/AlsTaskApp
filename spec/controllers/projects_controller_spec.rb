@@ -5,7 +5,7 @@ describe ProjectsController do
     @user = create_user(admin: false)
     session[:user_id] = @user.id
   end
-  
+
   describe 'Project Actions:' do
 
     describe 'GET #index' do
@@ -151,7 +151,8 @@ describe ProjectsController do
         @project = create_project
       end
       it 'expects project member to be unable to update or delete projects' do
-        membership = create_membership(@project, @user, role: 'Member')
+        user2 = create_user(email: 'augivblah@h;suakhdf.com')
+        membership = create_membership(@project, user2, role: 'Member')
         get :edit, id: @project.id
         expect(response).to redirect_to projects_path
       end

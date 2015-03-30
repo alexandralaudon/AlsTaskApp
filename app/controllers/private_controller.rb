@@ -20,7 +20,7 @@ class PrivateController < ApplicationController
   end
 
   def require_project_ownership
-    unless @project.memberships.where(user_id: current_user.id).pluck(:role) == ["Owner"] || ensure_admin?
+    unless @project.memberships.where(user_id: current_user.id) || ensure_admin?
       flash[:danger] = 'You do not have access'
       redirect_to projects_path
     end

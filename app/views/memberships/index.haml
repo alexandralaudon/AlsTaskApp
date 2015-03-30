@@ -4,6 +4,7 @@
   %li= link_to 'Projects', projects_path
   %li= link_to @project.name, project_path(@project)
   %li.active= 'Memberships'
+  
 .row
   = render partial: "shared/errors", locals: {object: @membership, gap: false}
 - if @project.memberships.where(user_id: current_user.id).pluck(:role) == ["Owner"]
@@ -14,6 +15,7 @@
           = m.collection_select :user_id, User.all, :id, :full_name, {prompt: 'Please select a user...'}, {class:'form-control'}
           = m.collection_select :role, Membership::ROLE, :to_s, :to_s, {}, {class:'form-control'}
           = m.submit 'Add New Member', class:'btn btn-primary'
+
 - @memberships.each do |membership|
   %p.row
     .col-md-2

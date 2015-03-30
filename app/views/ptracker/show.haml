@@ -1,8 +1,7 @@
 .page-header
-  - @projects.each do |project|
-    = project[:id]
-    -# make this a conditional statement that requires pivotal tracker ID to match stories project_id
-    %h1= project[:name]
+  .pull-right
+    = "(showing first #{@number_of_stories})"
+  %h1= @project_name
 
 %table.table.table-striped
   %thead
@@ -12,7 +11,7 @@
       %th{:colspan => "1"} Labels
       %th{:colspan => "1"} Current State
   %tbody
-    - @stories.each do |story|
+    - @stories.first(@number_of_stories).each do |story|
       %tr
         %td= link_to story[:name], story[:url]
         %td= story[:estimate]

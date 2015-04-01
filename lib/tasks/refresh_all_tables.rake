@@ -15,31 +15,31 @@ namespace :refresh do
       User.first.update_attributes(admin: true)
       User.create!(first_name: "Emily", last_name: "with the coolest hat", email: "admin@example.com", password: 'password', admin: true)
       user_id_array = User.pluck(:id)
-      puts "#{User.all.count} users generated. User_id_array: #{user_id_array}"
+      puts "#{User.count} users generated. User_id_array: #{user_id_array}"
 
       10.times do |project|
         Project.create!(name: Faker::Company.catch_phrase)
       end
       project_id_array = Project.pluck(:id)
-      puts "#{Project.all.count} projects generated. Project_id_array: #{project_id_array}"
+      puts "#{Project.count} projects generated. Project_id_array: #{project_id_array}"
 
       25.times do |task|
         Task.create!(description: Faker::Hacker.say_something_smart, complete: [true,false].sample, due_date: Faker::Date.forward(30), project_id: project_id_array.sample)
       end
       task_id_array = Task.pluck(:id)
-      puts "#{Task.all.count} tasks generated. Task_id_array: #{task_id_array}"
+      puts "#{Task.count} tasks generated. Task_id_array: #{task_id_array}"
 
 
       75.times do |comment|
         Comment.create!(message: Faker::Company.bs, user_id: user_id_array.sample, task_id: task_id_array.sample)
       end
-      puts "#{Comment.all.count} comments generated"
+      puts "#{Comment.count} comments generated"
 
       membership_role = ['Member', 'Owner']
       40.times do |membership|
         Membership.create(role: membership_role.sample, project_id: project_id_array.sample, user_id: user_id_array.sample)
       end
-      puts "#{Membership.all.count} memberships generated"
+      puts "#{Membership.count} memberships generated"
 
   end
 end

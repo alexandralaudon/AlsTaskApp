@@ -1,7 +1,7 @@
 class MembershipsController < PrivateController
   before_action :project_instance_variable
   before_action :ensure_owner_or_member
-  before_action :require_project_ownership, only: [:edit, :update, :destroy ]
+  before_action :require_project_ownership, only: [:update, :destroy ]
   before_action :memberships_must_have_one_owner, only: [:update, :destroy]
 
   def index
